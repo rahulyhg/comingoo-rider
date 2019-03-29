@@ -1,42 +1,25 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Button } from 'react-native';
-import {withNavigation} from 'react-navigation'
 
+import {createAppContainer,createStackNavigator} from 'react-navigation';
+import login from '../screens/Login';
+import signUp from '../screens/Signup';
+import HomeScreen from '../screens/Home';
 
-class navigations extends Component {
-
-    LoginNavigation = () => {
-        this.props.navigation.navigate("signUp");
+const AppNavigator = createStackNavigator({
+    Home: {
+      screen: HomeScreen,
+      navigationOptions:{
+          header:null
+      }
+    },
+    Login: {
+        screen: login
+      },
+      Signup: {
+      screen: signUp
     }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <Button title="Login" onPress={this.LoginNavigation}></Button>
-            </View>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});
-
-export default withNavigation(navigations);
-
-
+  },{
+      initialRouteName:'Home'
+  });
+  
+  export default createAppContainer(AppNavigator);
+  
