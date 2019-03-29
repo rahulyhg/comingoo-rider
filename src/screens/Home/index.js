@@ -31,14 +31,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
    
-  },
-  welcomeImage: {
-    height : 100,
-    width : 100,
-  },
-
-  welcomeText : {
-    fontSize : 20
   }
-  
 });
