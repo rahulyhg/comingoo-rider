@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
+
 import { images } from "../../utils";
 import styles from "./styles";
 
@@ -18,7 +19,9 @@ export default class Home extends Component {
           <View style={styles.middleInnerContainer}>
             <View style={styles.middleTextContainer}>
               <Text style={styles.smallTxt}>Don't have an account?</Text>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate("Signup")}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("Signup")}
+              >
                 <Text style={styles.mediumTxt}>Sign up</Text>
               </TouchableOpacity>
             </View>
@@ -28,7 +31,9 @@ export default class Home extends Component {
           <View style={styles.bottomInnerContainer}>
             <View style={styles.bottomTextContainer}>
               <Text style={styles.accountColor}>Already have an account</Text>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate("Login")}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("Login")}
+              >
                 <Text style={styles.signInColor}>Sign in</Text>
               </TouchableOpacity>
             </View>
