@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Item, Label, Input } from "native-base";
 
 import { handlers } from "../../helpers";
+import { loginWithFacebook } from "../../config/facebook";
 
 import styles from "./styles";
 import { colors } from "../../constants";
@@ -31,6 +32,15 @@ class Signup extends React.Component {
     this.setState({ step: step + 1 });
   };
 
+  login = async () => {
+    try {
+      const user = await loginWithFacebook();
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   sendOTP = () => {
     const { number } = this.state;
     if (!number) {
@@ -56,7 +66,7 @@ class Signup extends React.Component {
   };
 
   facebootBtn = () => (
-    <TouchableOpacity style={styles.btn} onPress={this.next}>
+    <TouchableOpacity style={styles.btn} onPress={this.login}>
       <Image
         source={icons.fb_icon}
         style={styles.iconStyle}
