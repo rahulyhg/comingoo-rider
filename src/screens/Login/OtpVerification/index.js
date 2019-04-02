@@ -34,6 +34,7 @@ export default class OtpVerification extends React.Component {
           });
           return handlers.showToast("veuillez entrer d'abord OTP", "danger");
         }
+        this.props.navigation.navigate("MainPage");
     }
 
     render() {
