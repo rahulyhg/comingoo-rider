@@ -11,6 +11,8 @@ target 'Rider' do
   pod 'FBSDKShareKit'
 
 
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'RiderTests' do
     inherit! :search_paths
     # Pods for testing

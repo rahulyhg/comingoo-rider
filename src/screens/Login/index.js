@@ -12,8 +12,14 @@ class Login extends React.Component {
   }
 
   login = () => {
-    const { onLogin } = this.props;
-    onLogin();
+    // const { onLogin } = this.props;
+    // onLogin();
+    this.navigate("Map");
+  };
+
+  navigate = route => {
+    const { navigation } = this.props;
+    navigation.navigate(route);
   };
 
   render() {
