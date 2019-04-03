@@ -1,0 +1,23 @@
+{
+  "home": {
+    "no_account": "Vous n'avez pas de compte?",
+    "have_account": "Vous avez déjà un compte",
+    "sign_up": "S'inscrire",
+    "sign_in": "se connecter"
+  },
+  "login": {
+    "login_heading": "Écran de connexion",
+    "login_button": "S'identifier",
+    "sign_up": "S'inscrire"
+  },
+  "signup": {
+    "enter_phone_toast": "S'il vous plait, entrez votre numéro de téléphone!",
+    "enter_otp_toast": "S'il vous plaît entrer OTP en premier",
+    "continue_with_fb": "Continuer avec Facebook",
+    "phone_number": "Numéro de téléphone",
+    "sign_up": "S'inscrire",
+    "step_1": "Merci de vous inscrire avec votre compte facebook pour continuer",
+    "step_2": "Entrez votre numéro de téléphone",
+    "step_3": "Un code de vérification a été envoyé à votre numéro de téléphone. Veuillez le saisir ci-dessous pour continuer."
+  }
+}
