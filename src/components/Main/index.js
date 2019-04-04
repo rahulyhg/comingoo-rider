@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Button } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { icons } from '../../utils';
 import styles from './styles';
 
@@ -8,15 +8,17 @@ export default class Main extends Component {
 
     static navigationOptions = ({ ...props }) => {
         return {
-            title: "FCKK",
-            headerLeft: <Button title="menu" onPress={() => props.navigation.toggleDrawer()} />
+            headerLeft: <TouchableOpacity onPress={() => props.navigation.toggleDrawer()} >
+                <Image style={styles.drawerMenuStyle} source={icons.drawer_menu} />
+            </TouchableOpacity>
+
         }
     }
 
 
     render() {
         return (
-            <View>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>
                     HEYYY I am Main Component
                 </Text>

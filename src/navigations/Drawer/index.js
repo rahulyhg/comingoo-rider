@@ -2,142 +2,142 @@ import React, { Component } from 'react';
 import { View, Text, ImageBackground, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Thumbnail, Button } from 'native-base';
 import { icons, images } from '../../utils';
+import styles from './styles';
 const { width, height } = Dimensions.get("window");
 
 export default class Drawer extends Component {
+
+
+    homeNavigation = () => {
+        this.props.navigation.navigate("DrawerHome");
+    }
+
+
+    historyNavigation = () => {
+        this.props.navigation.navigate("DrawerHistory");
+    }
+
+    notificationsNavigation = () => {
+        this.props.navigation.navigate("DrawerNotifications");
+    }
+
+    referNavigation = () => {
+        this.props.navigation.navigate("DrawerReferAFriend");
+    }
+
+    comingooNavigation = () => {
+        this.props.navigation.navigate("DrawerComingooAndYou");
+    }
+
+    helpNavigation = () => {
+        this.props.navigation.navigate("DrawerHelp");
+    }
+
     render() {
         const uri = "https://facebook.github.io/react-native/docs/assets/favicon.png";
         return (
-            <View style={{
-                flex: 1,
-                backgroundColor: 'transparent',
-            }}>
-                <ImageBackground source={images.drawer_image} style={{ width: width * 0.74, height: "100%" }} resizeMode="cover">
-                    <View style={{ flex: 1 }}>
-                        <View style={{ flex: 0.2, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20 }}>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: "52%", alignItems: 'center' }}>
-                                <View style={{
-                                    backgroundColor: "#fff",
-                                    width: 100,
-                                    height: 100,
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: 1000,
-                                }}>
+            <View style={styles.container}>
+                <ImageBackground source={images.drawer_image} style={styles.backgroundDrawerImage} resizeMode="cover">
+                    <View style={styles.innerContainer}>
+                        <View style={styles.innerViewContainer}>
+                            <View style={styles.innerThumbnailAndTextContainer}>
+                                <View style={styles.thumbnailContainer}>
                                     <Thumbnail large source={{ uri: uri }} />
 
                                 </View>
 
                                 <View>
-                                    <Text style={{ fontSize: 20, color: '#fff' }}>
-                                        HIII
+                                    <Text style={styles.textContainer}>
+                                        Comingoo
                                     </Text>
                                 </View>
                             </View>
 
                         </View>
 
-                        <View style={{ flex: 0.7, justifyContent: "flex-start", alignItems: 'center', marginTop: 50 }}>
-                            <View style={{ flex: 1, width: "65%" }}>
-                                <TouchableOpacity activeOpacity={0.5}>
-                                    <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                        <View style={styles.middleContainer}>
+                            <View style={styles.mainContainer}>
+                                <TouchableOpacity onPress={this.homeNavigation}>
+                                    <View style={styles.mainContainerImageAndText}>
                                         <Image
                                             source={icons.Home}
-                                            style={{
-                                                width: "14%",
-                                                height: "80%"
-                                            }}
+                                            style={styles.mainContainerStyles}
                                             resizeMode="contain"
                                         />
-                                        <Text style={{ fontSize: 20, color: '#fff', marginLeft: 10 }}> Home </Text>
+                                        <Text style={styles.mainContainerTextStyles}> Home </Text>
                                     </View>
                                 </TouchableOpacity>
 
                             </View>
 
-                            <View style={{ flex: 1, width: "65%" }}>
-                                <TouchableOpacity activeOpacity={0.5}>
-                                    <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                            <View style={styles.mainContainer}>
+                                <TouchableOpacity onPress={this.historyNavigation}>
+                                    <View style={styles.mainContainerImageAndText}>
                                         <Image
                                             source={icons.history}
-                                            style={{
-                                                width: "14%",
-                                                height: "80%"
-                                            }}
+                                            style={styles.mainContainerStyles}
                                             resizeMode="contain"
                                         />
-                                        <Text style={{ fontSize: 20, color: '#fff', marginLeft: 10 }}> History </Text>
+                                        <Text style={styles.mainContainerTextStyles}> History </Text>
                                     </View>
                                 </TouchableOpacity>
 
                             </View>
 
-                            <View style={{ flex: 1, width: "65%" }}>
-                                <TouchableOpacity activeOpacity={0.5}>
-                                    <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                            <View style={styles.mainContainer}>
+                                <TouchableOpacity onPress={this.notificationsNavigation}>
+                                    <View style={styles.mainContainerImageAndText}>
                                         <Image
-                                            source={icons.help}
-                                            style={{
-                                                width: "14%",
-                                                height: "80%"
-                                            }}
+                                            source={icons.notification}
+                                            style={styles.mainContainerStyles}
                                             resizeMode="contain"
                                         />
-                                        <Text style={{ fontSize: 20, color: '#fff', marginLeft: 10 }}> Notifications </Text>
+                                        <Text style={styles.mainContainerTextStyles}> Notifications </Text>
                                     </View>
                                 </TouchableOpacity>
 
                             </View>
 
 
-                            <View style={{ flex: 1, width: "65%" }}>
-                                <TouchableOpacity activeOpacity={0.5}>
-                                    <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                            <View style={styles.mainContainer}>
+                                <TouchableOpacity onPress={this.referNavigation}>
+                                    <View style={styles.mainContainerImageAndText}>
                                         <Image
                                             source={icons.refer}
-                                            style={{
-                                                width: "14%",
-                                                height: "80%"
-                                            }}
+                                            style={styles.mainContainerStyles}
                                             resizeMode="contain"
                                         />
-                                        <Text style={{ fontSize: 20, color: '#fff', marginLeft: 10 }}> Refer a friend </Text>
+                                        <Text style={styles.mainContainerTextStyles}> Refer a friend </Text>
                                     </View>
                                 </TouchableOpacity>
 
                             </View>
 
 
-                            <View style={{ flex: 1, width: "65%" }}>
-                                <TouchableOpacity activeOpacity={0.5}>
-                                    <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                            <View style={styles.mainContainer}>
+                                <TouchableOpacity onPress={this.comingooNavigation}>
+                                    <View style={styles.mainContainerImageAndText}>
                                         <Image
                                             source={icons.heart}
-                                            style={{
-                                                width: "14%",
-                                                height: "80%"
-                                            }}
+                                            style={styles.mainContainerStyles}
                                             resizeMode="contain"
                                         />
-                                        <Text style={{ fontSize: 20, color: '#fff', marginLeft: 10 }}> Comingoo & you </Text>
+                                        <Text style={styles.mainContainerTextStyles}> Comingoo & you </Text>
                                     </View>
                                 </TouchableOpacity>
 
                             </View>
 
 
-                            <View style={{ flex: 1, width: "65%" }}>
-                                <TouchableOpacity activeOpacity={0.5}>
-                                    <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                            <View style={styles.mainContainer}>
+                                <TouchableOpacity onPress={this.helpNavigation}>
+                                    <View style={styles.mainContainerImageAndText}>
                                         <Image
                                             source={icons.help}
-                                            style={{
-                                                width: "14%",
-                                                height: "80%"
-                                            }}
+                                            style={styles.mainContainerStyles}
                                             resizeMode="contain"
                                         />
-                                        <Text style={{ fontSize: 20, color: '#fff', marginLeft: 10 }}> Help </Text>
+                                        <Text style={styles.mainContainerTextStyles}> Help </Text>
                                     </View>
                                 </TouchableOpacity>
 
@@ -147,25 +147,18 @@ export default class Drawer extends Component {
                         </View>
 
 
-                        <View style={{
-                            backgroundColor: "#fff",
-                            height: 3,
-                            width: width * 0.68
-                        }} />
+                        <View style={styles.underline} />
 
-                        <View style={{ flex: 0.2, justifyContent: 'center', alignItems: "center", }}>
+                        <View style={styles.bottomContainer}>
 
                             <TouchableOpacity activeOpacity={0.5}>
-                                <View style={{ flexDirection: "row", paddingRight: "35%", width: '65%' }}>
+                                <View style={styles.bottomInnerContainer}>
                                     <Image
                                         source={icons.logout}
-                                        style={{
-                                            width: "14%",
-                                            height: "80%"
-                                        }}
+                                        style={styles.bottomImageStyle}
                                         resizeMode="contain"
                                     />
-                                    <Text style={{ fontSize: 20, color: '#fff', marginLeft: 10 }}> Help </Text>
+                                    <Text style={styles.bottomImageTextStyle}> Logout </Text>
                                 </View>
                             </TouchableOpacity>
 

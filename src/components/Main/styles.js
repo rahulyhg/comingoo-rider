@@ -9,5 +9,10 @@ export default StyleSheet.create({
         width: "14%",
         height: "80%",
         backgroundColor: colors.bluePrimary,
+    },
+    drawerMenuStyle: {
+        width: 30,
+        height: 30,
+        marginLeft: 10
     }
 });
