@@ -1,4 +1,4 @@
-package com.rider;
+package com.comingoo.rider;
 
 import com.facebook.react.ReactActivity;
 import android.content.Intent;

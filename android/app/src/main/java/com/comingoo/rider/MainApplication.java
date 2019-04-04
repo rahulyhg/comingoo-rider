@@ -1,4 +1,4 @@
-package com.rider;
+package com.comingoo.rider;
 
 import android.app.Application;
 
