@@ -9,6 +9,7 @@ import { loginWithFacebook } from "../../config/facebook";
 import styles from "./styles";
 import { colors } from "../../constants";
 import { icons } from "../../utils";
+import firebase from "react-native-firebase";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Signup extends React.Component {
       step: 1,
       numberError: false,
       number: "",
-      otp: ""
+      otp: "",
+      confirmResult: null
     };
   }
 
@@ -52,17 +54,38 @@ class Signup extends React.Component {
         "danger"
       );
     }
-    this.next();
+
+    firebase
+      .auth()
+      .signInWithPhoneNumber(number)
+      .then(confirmResult => {
+        this.setState({ confirmResult: confirmResult });
+        this.next();
+        return handlers.showToast("Code sent your phone.");
+      })
+      .catch(error => console.log(error));
   };
 
   verifyOTP = () => {
-    const { otp } = this.state;
+    const { otp, confirmResult } = this.state;
     if (!otp) {
       this.setState({
         numberError: !otp
       });
       return handlers.showToast("veuillez entrer d'abord OTP", "danger");
     }
+
+    confirmResult
+      .confirm(otp)
+      .then(user => {
+        console.log(user);
+        // user successfully signup, will navigate to nextpage...
+        return handlers.showToast("Code confirmed.");
+
+      })
+      .catch(error => {
+        return handlers.showToast(error, "danger");
+      });
   };
 
   facebootBtn = () => (
