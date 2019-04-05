@@ -1,0 +1,26 @@
+{
+  "home": {
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account",
+    "sign_up": "Sign up",
+    "sign_in": "Sign in"
+  },
+  "login": {
+    "login_heading": "Login Screen",
+    "login_button": "Login",
+    "sign_up": "Sign up",
+    "login_with_facebook" : "Login with facebook",
+    "sign_in_with_facebook_or_phone_number":"Sign in with facebook button or phone number",
+    "login_with_phone_number":"Login with Phone Number"
+  },
+  "signup": {
+    "enter_phone_toast": "Please, enter your phone number!",
+    "enter_otp_toast": "Please enter OTP first",
+    "continue_with_fb": "Continue with Facebook",
+    "phone_number": "Phone Number",
+    "sign_up": "Sign up",
+    "step_1": "Please sign up with your facebook account to continue",
+    "step_2": "Enter your phone number",
+    "step_3": "A varification code has been sent to your phone number, please enter it below to continue"
+  }
+}
