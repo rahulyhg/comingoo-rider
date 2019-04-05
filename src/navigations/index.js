@@ -56,7 +56,7 @@ const StackTab = createStackNavigator({
     screen: DrawerHelp
   },
 }, {
-    initialRouteName: 'MainPage'
+    initialRouteName: 'Home'
   });
 
 
