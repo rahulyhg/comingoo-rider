@@ -70,7 +70,7 @@ class Signup extends React.Component {
       .then(confirmResult => {
         this.setState({ confirmResult: confirmResult });
         this.next();
-        return handlers.showToast("Code sent your phone.");
+        return handlers.showToast(strings('signup.code_sent_your_phone'));
       })
       .catch(error => console.log(error));
   };
@@ -89,7 +89,7 @@ class Signup extends React.Component {
       .then(user => {
         console.log(user);
         // user successfully signup, will navigate to nextpage...
-        return handlers.showToast("Code confirmed.");
+        return handlers.showToast(strings('signup.code_confirmed'));
       })
       .catch(error => {
         return handlers.showToast(error, "danger");
