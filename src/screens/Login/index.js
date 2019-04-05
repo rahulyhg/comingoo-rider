@@ -19,7 +19,7 @@ class Login extends React.Component {
   facebookAuthentication = async () => {
     try {
       const user = await loginWithFacebook();
-      console.log(user);
+      console.log(user) ;
     } catch (error) {
       console.log(error);
     }
