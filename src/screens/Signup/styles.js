@@ -1,8 +1,8 @@
 import { Dimensions, StyleSheet } from "react-native";
 
-const { width, height } = Dimensions.get("window");
-
 import { colors } from "../../constants";
+
+const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
   container: {
@@ -71,7 +71,7 @@ export default StyleSheet.create({
     fontSize: width * 0.04
   },
   inputs: {
-    marginTop: "10%",
+    marginTop: "10%"
   },
   inputStyle: {
     width: width * 0.8,

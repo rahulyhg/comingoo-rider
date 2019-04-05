@@ -8,9 +8,9 @@ const checkLocationPermission = async () => {
 const requestLocationPermission = async () => {
   const permission = await Permissions.request("location");
   if (permission !== "authorized") {
-    throw {
+    throw Object.assign({
       message: "In order to continue you have grant us location permission"
-    };
+    });
   }
   return permission;
 };

@@ -2,7 +2,8 @@
   "extends": "rallycoding",
   "rules": {
     "react/self-closing-comp": "off",
-    "newline-per-chained-call": 0
+    "newline-per-chained-call": 0,
+    "quotes": [2, "double", { "avoidEscape": true }]
   },
   "globals": {
     "fetch": false
