@@ -11,16 +11,16 @@ export default StyleSheet.create({
         backgroundColor: 'transparent',
     },
     backgroundDrawerImage: {
-        width: width / 1.36, height: "100%"
+        width: width / 1.21, height: "100%"
     },
     innerContainer: {
         flex: 1
     },
     innerViewContainer: {
-        flex: 0.25, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: width * 0.04,
+        flex: 0.25, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: width * 0.08,
     },
     innerThumbnailAndTextContainer: {
-        flexDirection: 'row', justifyContent: 'space-between', width: "75%", alignItems: 'center'
+        flexDirection: 'row', justifyContent: 'space-between', width: "73%", alignItems: 'center'
     },
     thumbnailContainer: {
         backgroundColor: "#fff",
@@ -42,7 +42,7 @@ export default StyleSheet.create({
     underline: {
         backgroundColor: "#fff",
         height: 2,
-        width: width/1.5
+        width: width/1.4
     },
     bottomContainer: { flex: 0.1, justifyContent: 'center', alignItems: "center", },
     bottomInnerContainer: { flexDirection: "row", paddingRight: "30%", width: '65%' },

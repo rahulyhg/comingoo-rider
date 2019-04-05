@@ -66,7 +66,7 @@ const StackTab = createStackNavigator({
 const AppNavigator = createDrawerNavigator({
   Tabs: StackTab
 }, {
-    drawerWidth: deviceWidth/1.5,
+    drawerWidth: deviceWidth/1.4,
     contentComponent: props => <Drawer {...props} />,
   });
 
