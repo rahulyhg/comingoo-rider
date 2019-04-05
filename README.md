@@ -96,3 +96,18 @@ https://github.com/kmagiera/react-native-gesture-handler
 ```
 https://github.com/AlexanderZaytsev/react-native-i18n
 ```
+
+6- React Native Permissions
+
+```
+https://github.com/yonahforst/react-native-permissions
+```
+
+7- React Native Maps
+
+```
+https://github.com/react-native-community/react-native-maps
+```
+
+
+
