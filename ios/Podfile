@@ -46,6 +46,12 @@ target 'Rider' do
   pod 'GoogleMaps'  # Uncomment this line if you want to support GoogleMaps on iOS
   pod 'Google-Maps-iOS-Utils' # Uncomment this line if you want to support GoogleMaps on iOS
 end
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+
+  target 'RiderTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|

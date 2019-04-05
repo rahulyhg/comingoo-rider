@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-import { connect } from "react-redux";
+import {StyleSheet, Text, View, Button} from "react-native";
+import {connect} from "react-redux";
 
-import { onLogin } from "../../store/auth/actions";
+import {onLogin} from "../../store/auth/actions";
+import {strings} from "../../../locale/i18n";
 
 class Login extends React.Component {
   constructor(props) {
@@ -25,12 +26,13 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Login Screen </Text>
-        <Button title="Login" onPress={this.login} />
+        <Text>
+          {strings('login.login_heading')}
+        </Text>
+        <Button title={strings('login.login_button')} onPress={this.login}/>
         <Button
-          title="Signup"
-          onPress={() => this.props.navigation.navigate("Signup")}
-        />
+          title={strings('login.sign_up')}
+          onPress={() => this.props.navigation.navigate("Signup")}/>
       </View>
     );
   }
@@ -51,7 +53,4 @@ const mapDispatchToProps = dispatch => ({
   onLogin: () => dispatch(onLogin())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
