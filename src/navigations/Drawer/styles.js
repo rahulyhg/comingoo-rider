@@ -2,17 +2,16 @@ import { Dimensions, StyleSheet } from "react-native";
 
 import { colors } from "../../constants/index";
 
-const { width, height } = Dimensions.get("window");
+const {width,height} = Dimensions.get("window");
 
 export default StyleSheet.create({
 
     container: {
         flex: 1,
         backgroundColor: 'transparent',
-        paddingLeft: 0.60
     },
     backgroundDrawerImage: {
-        width: width * 0.75, height: "100%"
+        width: width / 1.36, height: "100%"
     },
     innerContainer: {
         flex: 1
@@ -43,7 +42,7 @@ export default StyleSheet.create({
     underline: {
         backgroundColor: "#fff",
         height: 2,
-        width: width * 0.68
+        width: width/1.5
     },
     bottomContainer: { flex: 0.1, justifyContent: 'center', alignItems: "center", },
     bottomInnerContainer: { flexDirection: "row", paddingRight: "30%", width: '65%' },

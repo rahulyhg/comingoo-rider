@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { Dimensions } from 'react-native';
 import login from '../screens/Login';
 import signUp from '../screens/Signup';
 import HomeScreen from '../screens/Home';
@@ -14,6 +15,8 @@ import DrawerNotifications from '../screens/DrawerScreens/Notifications'
 import DrawerReferAFriend from '../screens/DrawerScreens/ReferAFriend'
 import DrawerComingooAndYou from '../screens/DrawerScreens/ComingooAndYou'
 import DrawerHelp from '../screens/DrawerScreens/Help'
+
+const deviceWidth = Dimensions.get("window").width;
 
 const StackTab = createStackNavigator({
   Home: {
@@ -63,6 +66,7 @@ const StackTab = createStackNavigator({
 const AppNavigator = createDrawerNavigator({
   Tabs: StackTab
 }, {
+    drawerWidth: deviceWidth/1.5,
     contentComponent: props => <Drawer {...props} />,
   });
 
