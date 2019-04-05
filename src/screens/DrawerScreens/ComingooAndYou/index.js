@@ -6,7 +6,7 @@ export default class ComingooAndYou extends Component {
         return (
             <View style={{flex:1,justifyContent:'center',alignItems:"center"}}>
                 <Text>
-                    HEYYY I am Comingoo and You Screen
+                    Comingoo and You 
                 </Text>
             </View>
         )

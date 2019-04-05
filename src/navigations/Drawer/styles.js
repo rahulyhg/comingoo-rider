@@ -9,15 +9,16 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'transparent',
+        paddingLeft: 0.60
     },
     backgroundDrawerImage: {
-        width: width * 0.74, height: "100%"
+        width: width * 0.75, height: "100%"
     },
     innerContainer: {
         flex: 1
     },
     innerViewContainer: {
-        flex: 0.3, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20
+        flex: 0.25, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: width * 0.04,
     },
     innerThumbnailAndTextContainer: {
         flexDirection: 'row', justifyContent: 'space-between', width: "75%", alignItems: 'center'
@@ -50,5 +51,5 @@ export default StyleSheet.create({
         width: "24%",
         height: "80%"
     },
-    bottomImageTextStyle:{ fontSize: 20, color: '#fff', marginLeft: 10 }
+    bottomImageTextStyle: { fontSize: 20, color: '#fff', marginLeft: 10 }
 });

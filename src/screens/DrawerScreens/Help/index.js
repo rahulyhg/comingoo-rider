@@ -6,7 +6,7 @@ export default class Help extends Component {
         return (
             <View style={{flex:1,justifyContent:'center',alignItems:"center"}}>
                 <Text>
-                    HEYYY I am Help Screen
+                    Help Screen
                 </Text>
             </View>
         )

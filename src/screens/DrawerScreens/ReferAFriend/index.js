@@ -6,7 +6,7 @@ export default class ReferAFriend extends Component {
         return (
             <View style={{flex:1,justifyContent:'center',alignItems:"center"}}>
                 <Text>
-                    HEYYY I am ReferAFriend Screen
+                    ReferAFriend Screen
                 </Text>
             </View>
         )

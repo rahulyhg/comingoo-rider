@@ -37,7 +37,7 @@ export default class Drawer extends Component {
         const uri = "https://facebook.github.io/react-native/docs/assets/favicon.png";
         return (
             <View style={styles.container}>
-                <ImageBackground source={images.drawer_image} style={styles.backgroundDrawerImage} resizeMode="cover">
+                <ImageBackground source={images.drawer_image} style={styles.backgroundDrawerImage} >
                     <View style={styles.innerContainer}>
                         <View style={styles.innerViewContainer}>
                             <View style={styles.innerThumbnailAndTextContainer}>

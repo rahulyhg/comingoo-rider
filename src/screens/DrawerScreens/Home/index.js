@@ -6,7 +6,7 @@ export default class Home extends Component {
         return (
             <View style={{flex:1,justifyContent:'center',alignItems:"center"}}>
                 <Text>
-                    HEYYY I am Home Screen
+                    Home Screen
                 </Text>
             </View>
         )
