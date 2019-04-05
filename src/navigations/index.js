@@ -1,25 +1,24 @@
+import { createAppContainer, createStackNavigator } from "react-navigation";
+import LoginScreen from "../screens/Login";
+import SignUpScreen from "../screens/Signup";
+import HomeScreen from "../screens/Home";
+import MapScreen from "../screens/Map";
 
-import {createAppContainer,createStackNavigator} from 'react-navigation';
-import login from '../screens/Login';
-import signUp from '../screens/Signup';
-import HomeScreen from '../screens/Home';
-
-const AppNavigator = createStackNavigator({
+const AppNavigator = createStackNavigator(
+  {
     Home: {
       screen: HomeScreen,
-      navigationOptions:{
-          header:null
+      navigationOptions: {
+        header: null
       }
     },
-    Login: {
-        screen: login
-      },
-      Signup: {
-      screen: signUp
-    }
-  },{
-      initialRouteName:'Home'
-  });
-  
-  export default createAppContainer(AppNavigator);
-  
+    Login: { screen: LoginScreen },
+    Signup: { screen: SignUpScreen },
+    Map: { screen: MapScreen }
+  },
+  {
+    initialRouteName: "Home"
+  }
+);
+
+export default createAppContainer(AppNavigator);

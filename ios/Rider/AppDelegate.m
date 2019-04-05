@@ -9,6 +9,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 #import <Firebase.h>
 
@@ -19,6 +20,8 @@
   [FIRApp configure];
   
   NSURL *jsCodeLocation;
+  
+  [GMSServices provideAPIKey:@"GOOGLE_API_KEY"];
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
