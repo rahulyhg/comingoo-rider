@@ -5,6 +5,7 @@ import styles from "./styles";
 import { colors } from "../../constants";
 import { icons } from "../../utils";
 import { loginWithFacebook } from '../../config/facebook';
+import { strings } from "../../../locale/i18n";
 
 class Login extends React.Component {
   static navigationOptions = () => ({
@@ -33,7 +34,7 @@ class Login extends React.Component {
           resizeMode="contain"
         />
         <View style={styles.seperator} />
-        <Text style={styles.btnTxt}>Login With Facebook</Text>
+        <Text style={styles.btnTxt}>{strings('login.login_with_facebook')}</Text>
       </TouchableOpacity>
       <Text>{" "}</Text>
 
@@ -44,7 +45,7 @@ class Login extends React.Component {
           resizeMode="contain"
         />
         <View style={styles.seperator} />
-        <Text style={styles.btnTxt}>Login With Phone Number</Text>
+        <Text style={styles.btnTxt}>{strings('login.login_with_phone_number')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -52,9 +53,9 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={styles.mediumTxt}>Sign in</Text>
+          <Text style={styles.mediumTxt}>{strings('home.sign_in')}</Text>
           <Text style={styles.smallTxt}>
-            sign in with facebook button or phone number
+            {strings('login.sign_in_with_facebook_or_phone_number')}
           </Text>
         </View>
         <View style={styles.middleContainer}>{this.buttons()}</View>
@@ -68,6 +69,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Login);
-
-
 
