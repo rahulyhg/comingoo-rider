@@ -23,6 +23,16 @@ class Login extends React.Component {
     } catch (error) {
       console.log(error);
     }
+  }
+  login = () => {
+    // const { onLogin } = this.props;
+    // onLogin();
+    this.navigate("Map");
+  };
+
+  navigate = route => {
+    const { navigation } = this.props;
+    navigation.navigate(route);
   };
 
   buttons = () => (

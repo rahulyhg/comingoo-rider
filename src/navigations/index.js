@@ -2,6 +2,7 @@
 import React from 'react';
 import { createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import { Dimensions } from 'react-native';
+import MapScreen from "../screens/Map";
 import login from '../screens/Login';
 import signUp from '../screens/Signup';
 import HomeScreen from '../screens/Home';
@@ -28,6 +29,7 @@ const StackTab = createStackNavigator({
   Login: {
     screen: login
   },
+  Map: { screen: MapScreen },
   LoginPhoneNumber: {
     screen: loginPhoneNumber
   },
