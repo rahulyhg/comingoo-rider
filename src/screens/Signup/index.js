@@ -18,7 +18,7 @@ class Signup extends React.Component {
     super(props);
 
     this.state = {
-      step: 2,
+      step: 1,
       numberError: false,
       number: "",
       otp: "",
