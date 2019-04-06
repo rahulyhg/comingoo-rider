@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, Modal, Alert } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import Dialog, {
   DialogContent,
-  SlideAnimation,
   ScaleAnimation
 } from "react-native-popup-dialog";
 
@@ -19,7 +18,14 @@ export default class Popup extends Component {
   }
 
   render() {
-    const { title, description } = this.props;
+    const {
+      title,
+      description,
+      buttonOneText,
+      buttonTwoText,
+      buttonOneOnPress,
+      buttonTwoOnPress
+    } = this.props;
 
     return (
       <Dialog
@@ -33,14 +39,32 @@ export default class Popup extends Component {
         onTouchOutside={() => {
           this.setState({ visible: false });
         }}
-        dialogStyle={styles.popupContainer}
+        dialogStyle={{ backgroundColor: null }}
       >
         <DialogContent>
           <LinearGradient
-            locations={[0, 0.3, 0.9]}
+            locations={[0, 0.3, 1]}
             colors={["#4B8FD1", "#2870BE", "#185EB1"]}
             style={styles.popupContainer}
-          />
+          >
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.description}>{description}</Text>
+            <View style={styles.buttonsContainer}>
+              {
+                <TouchableOpacity
+                  style={styles.buttonOneContainer}
+                  onPress={buttonOneOnPress}
+                >
+                  <Text style={styles.buttonOneText}>{buttonOneText}</Text>
+                </TouchableOpacity>
+              }
+              {buttonTwoText && (
+                <Text style={styles.buttonTwoText} onPress={buttonTwoOnPress}>
+                  {buttonTwoText}
+                </Text>
+              )}
+            </View>
+          </LinearGradient>
         </DialogContent>
       </Dialog>
     );

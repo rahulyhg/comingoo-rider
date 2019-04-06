@@ -23,7 +23,14 @@ export default class index extends Component {
       <Root>
         <Provider store={store}>
           <AppNavigator />
-          <Popup title="Title" description="Description" />
+          {/* <Popup
+            title="Voulez-vous vraiment annuler la course?"
+            description="Des frais supplementaires peuvent etra appliques"
+            buttonOneText="Non, je ne veux pas annuler"
+            buttonTwoText="Oui, jen suis sur"
+            buttonOneOnPress={() => console.warn("clicked button one")}
+            buttonTwoOnPress={() => console.warn("clicked button two")}
+          /> */}
         </Provider>
       </Root>
     );
