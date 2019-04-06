@@ -7,6 +7,7 @@ import { permissions } from "../helpers";
 import { store } from "../store";
 import AppNavigator from "../navigations/index";
 import { handlers } from "../helpers";
+import { Popup } from "../components";
 
 export default class index extends Component {
   componentDidMount = async () => {
@@ -22,6 +23,7 @@ export default class index extends Component {
       <Root>
         <Provider store={store}>
           <AppNavigator />
+          <Popup title="Title" description="Description" />
         </Provider>
       </Root>
     );
