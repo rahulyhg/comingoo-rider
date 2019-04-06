@@ -8,7 +8,6 @@ export default StyleSheet.create({
   popupContainer: {
     width: width - 30,
     height: 150,
-    backgroundColor: "#518FDC",
     borderRadius: 10
   }
 });

@@ -6,6 +6,8 @@ import Dialog, {
   ScaleAnimation
 } from "react-native-popup-dialog";
 
+import LinearGradient from "react-native-linear-gradient";
+
 import styles from "./styles";
 
 export default class Popup extends Component {
@@ -34,10 +36,11 @@ export default class Popup extends Component {
         dialogStyle={styles.popupContainer}
       >
         <DialogContent>
-          <View>
-            <Text>{title}</Text>
-            <Text>{description}</Text>
-          </View>
+          <LinearGradient
+            locations={[0, 0.3, 0.9]}
+            colors={["#4B8FD1", "#2870BE", "#185EB1"]}
+            style={styles.popupContainer}
+          />
         </DialogContent>
       </Dialog>
     );
