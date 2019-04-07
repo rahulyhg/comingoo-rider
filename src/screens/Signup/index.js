@@ -1,19 +1,29 @@
 import React from "react";
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, TouchableOpacity, Image,  TouchableWithoutFeedback,
+  Keyboard } from "react-native";
 import { connect } from "react-redux";
 import { Item, Label, Input } from "native-base";
 import PhoneInput from "react-native-phone-input";
 import CountryPicker from "react-native-country-picker-modal";
 
+
 import { handlers } from "../../helpers";
 import { loginWithFacebook } from "../../config/facebook";
 
 import styles from "./styles";
+
 import { colors } from "../../constants";
 import { icons } from "../../utils";
+import firebase from "react-native-firebase";
+
 import { strings } from "../../../locale/i18n";
 
 class Signup extends React.Component {
+  static navigationOptions = () => ({
+    headerTintColor: colors.light,
+    headerStyle: styles.headerStyle
+  });
+
   constructor(props) {
     super(props);
 
@@ -22,14 +32,10 @@ class Signup extends React.Component {
       numberError: false,
       number: "",
       otp: "",
+      confirmResult: null,
       cca2: "US"
     };
   }
-
-  static navigationOptions = () => ({
-    headerTintColor: colors.light,
-    headerStyle: styles.headerStyle
-  });
 
   next = () => {
     const { step } = this.state;
@@ -56,17 +62,37 @@ class Signup extends React.Component {
       });
       return handlers.showToast(strings("signup.enter_phone_toast"), "danger");
     }
-    this.next();
+
+    firebase
+      .auth()
+      .signInWithPhoneNumber(number)
+      .then(confirmResult => {
+        this.setState({ confirmResult: confirmResult });
+        this.next();
+        return handlers.showToast(strings('signup.code_sent_your_phone'));
+      })
+      .catch(error => console.log(error));
   };
 
   verifyOTP = () => {
-    const { otp } = this.state;
+    const { otp, confirmResult } = this.state;
     if (!otp) {
       this.setState({
         numberError: !otp
       });
       return handlers.showToast(strings("signup.enter_otp_toast"), "danger");
     }
+
+    confirmResult
+      .confirm(otp)
+      .then(user => {
+        console.log(user);
+        // user successfully signup, will navigate to nextpage...
+        return handlers.showToast(strings('signup.code_confirmed'));
+      })
+      .catch(error => {
+        return handlers.showToast(error, "danger");
+      });
   };
 
   facebootBtn = () => (
@@ -138,7 +164,7 @@ class Signup extends React.Component {
             style={styles.inputStyle}
             keyboardType="number-pad"
             value={otp}
-            onChangeText={otp => this.setState({ otp })}
+            onChangeText={otpInput => this.setState({ otp: otpInput })}
             error
           />
         </Item>
@@ -152,25 +178,27 @@ class Signup extends React.Component {
   render() {
     const { step } = this.state;
     return (
-      <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <Text style={styles.mediumTxt}>{strings("signup.sign_up")}</Text>
-          <Text style={styles.smallTxt}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          <View style={styles.topContainer}>
+            <Text style={styles.mediumTxt}>{strings("signup.sign_up")}</Text>
+            <Text style={styles.smallTxt}>
+              {step == 1
+                ? strings("signup.step_1")
+                : step == 2
+                ? strings("signup.step_2")
+                : strings("signup.step_3")}
+            </Text>
+          </View>
+          <View style={styles.middleContainer}>
             {step == 1
-              ? strings("signup.step_1")
+              ? this.facebootBtn()
               : step == 2
-              ? strings("signup.step_2")
-              : strings("signup.step_3")}
-          </Text>
+              ? this.numberInput()
+              : this.otpInput()}
+          </View>
         </View>
-        <View style={styles.middleContainer}>
-          {step == 1
-            ? this.facebootBtn()
-            : step == 2
-            ? this.numberInput()
-            : this.otpInput()}
-        </View>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
