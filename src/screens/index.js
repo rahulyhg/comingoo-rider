@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { Root } from "native-base";
 
-import { permissions } from "../helpers";
+import { permissions, handlers } from "../helpers";
 
 import { store } from "../store";
 import AppNavigator from "../navigations/index";
-import { handlers } from "../helpers";
 
 export default class index extends Component {
   componentDidMount = async () => {

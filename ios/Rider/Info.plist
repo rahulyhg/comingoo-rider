@@ -28,6 +28,17 @@
 				<string>fb2218960135087316</string>
 			</array>
 		</dict>
+<<<<<<< HEAD
+=======
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1031982693362-tub3gteg9keduf1dejja81gn24tn8c6u</string>
+			</array>
+		</dict>
+>>>>>>> f4caae37ae4cb9af673d30c6d2bcfbf3028c10b7
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
