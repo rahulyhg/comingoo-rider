@@ -5,6 +5,10 @@ import { Item, Label, Input } from "native-base";
 import { icons } from "../../../utils";
 import styles from './styles';
 import { handlers } from '../../../helpers';
+import { connect } from "react-redux";
+import firebase from "react-native-firebase";
+
+import { strings } from "../../../../locale/i18n";
 
 export default class OtpVerification extends React.Component {
 
@@ -28,12 +32,24 @@ export default class OtpVerification extends React.Component {
 
     verifyOtp=()=>{
         const { otp } = this.state;
+        const confirmResult=this.props.navigation.getParam("confirmResult");
         if (!otp) {
           this.setState({
             numberError: !otp
           });
-          return handlers.showToast("veuillez entrer d'abord OTP", "danger");
+          return handlers.showToast(strings("signup.enter_otp_toast"), "danger");
         }
+    
+        confirmResult
+          .confirm(otp)
+          .then(user => {
+            console.log(user);
+            this.props.navigation.navigate("Main");
+            return handlers.showToast(strings('signup.code_confirmed'));
+          })
+          .catch(error => {
+            return handlers.showToast(error, "danger");
+          });
     }
 
     render() {

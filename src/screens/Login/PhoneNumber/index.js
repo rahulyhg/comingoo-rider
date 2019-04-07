@@ -1,10 +1,20 @@
 import React from 'react';
-import { Text, View, Dimensions, TouchableOpacity, Image } from 'react-native';
-const { width, height } = Dimensions.get("window");
+import {
+    Text,
+    View,
+    TouchableOpacity,
+    Dimensions,
+    Image
+} from 'react-native';
+import { connect } from "react-redux";
+import firebase from "react-native-firebase";
 import { Item, Label, Input } from "native-base";
 import { icons } from "../../../utils";
 import styles from './styles';
-import {handlers} from '../../../helpers'
+import { handlers } from '../../../helpers'
+import { strings } from "../../../../locale/i18n";
+
+const { width, height } = Dimensions.get("window");
 
 export default class PhoneNumber extends React.Component {
 
@@ -24,6 +34,7 @@ export default class PhoneNumber extends React.Component {
         this.state = {
             number: "",
             numberError: false,
+            confirmResult: null
         }
     }
 
@@ -33,12 +44,19 @@ export default class PhoneNumber extends React.Component {
             this.setState({
                 numberError: !number
             });
-            return handlers.showToast(
-                "S'il vous plait, entrez votre numéro de téléphone!",
-                "danger"
-            );
+            return handlers.showToast(strings("signup.enter_phone_toast"), "danger");
         }
-        this.props.navigation.navigate("LoginOtp");
+
+        firebase
+            .auth()
+            .signInWithPhoneNumber(number)
+            .then(confirmResult => {
+                this.setState({ confirmResult: confirmResult });
+                this.props.navigation.navigate("LoginOtp", { confirmResult: this.state.confirmResult });
+                return handlers.showToast(strings('signup.code_sent_your_phone'));
+            })
+            .catch(error => console.log(error));
+
     }
 
     render() {
