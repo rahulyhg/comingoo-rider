@@ -18,6 +18,11 @@
     "sign_up": "S'inscrire",
     "step_1": "Merci de vous inscrire avec votre compte facebook pour continuer",
     "step_2": "Entrez votre numéro de téléphone",
-    "step_3": "Un code de vérification a été envoyé à votre numéro de téléphone. Veuillez le saisir ci-dessous pour continuer."
+    "step_3": "Un code de vérification a été envoyé à votre numéro de téléphone. Veuillez le saisir ci-dessous pour continuer.",
+    "code_sent_your_phone": "Code envoyé à votre téléphone.",
+    "code_confirmed": "Code confirmé."
+  },
+  "handlers": {
+    "okay": "d'accord"
   }
 }
