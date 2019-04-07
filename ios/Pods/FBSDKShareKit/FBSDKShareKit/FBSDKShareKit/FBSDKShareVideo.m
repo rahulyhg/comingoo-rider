@@ -195,7 +195,7 @@ NSString *const kFBSDKShareVideoURLKey = @"videoURL";
   }
   if ((errorRef != NULL) && !*errorRef) {
     *errorRef = [NSError fbInvalidArgumentErrorWithDomain:FBSDKShareErrorDomain
-                                                     name:kFBSDKShareVideoURLKey
+                                                     name:@"videoURL"
                                                     value:videoURL
                                                   message:@"Must refer to an asset file."];
   }
