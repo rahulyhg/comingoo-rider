@@ -6,7 +6,6 @@
 target 'Rider' do
   rn_path = '../node_modules/react-native'
   rn_maps_path = '../node_modules/react-native-maps'
-
   
   # See http://facebook.github.io/react-native/docs/integration-with-existing-apps.html#configuring-cocoapods-dependencies
   pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
@@ -27,9 +26,12 @@ target 'Rider' do
   ]
   
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'FBSDKShareKit'
+  pod 'FBSDKCoreKit', '~> 4.40.0'
+  pod 'FBSDKLoginKit', '~> 4.40.0'
+  pod 'FBSDKShareKit', '~> 4.40.0'  
+
+  pod 'Firebase/Core', '~> 5.15.0'
+  pod 'Firebase/Auth', '~> 5.15.0'
 
   # React Native third party dependencies podspecs
   pod 'DoubleConversion', :podspec => "#{rn_path}/third-party-podspecs/DoubleConversion.podspec"
@@ -48,10 +50,7 @@ target 'Rider' do
 end
   pod 'RNI18n', :path => '../node_modules/react-native-i18n'
 
-  target 'RiderTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -68,38 +67,3 @@ end
 
 
 
-
-
-# target 'Rider' do
-#   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-#   # use_frameworks!
-
-#   # Pods for Rider
-#   pod 'FBSDKCoreKit'
-#   pod 'FBSDKLoginKit'
-#   pod 'FBSDKShareKit'
-
-
-#   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
-
-#   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
-
-#   target 'RiderTests' do
-#     inherit! :search_paths
-#     # Pods for testing
-#   end
-
-# end
-
-target 'Rider-tvOS' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
-
-  # Pods for Rider-tvOS
-
-  target 'Rider-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end
