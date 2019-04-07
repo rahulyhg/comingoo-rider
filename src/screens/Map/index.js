@@ -35,7 +35,7 @@ export class index extends Component {
         <MapView
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
-          showsUserLocation={true}
+          showsUserLocation
           initialRegion={{
             latitude: coords.latitude,
             longitude: coords.longitude,

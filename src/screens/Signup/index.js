@@ -22,6 +22,11 @@ import firebase from "react-native-firebase";
 import { strings } from "../../../locale/i18n";
 
 class Signup extends React.Component {
+  static navigationOptions = () => ({
+    headerTintColor: colors.light,
+    headerStyle: styles.headerStyle
+  });
+
   constructor(props) {
     super(props);
 
@@ -33,11 +38,6 @@ class Signup extends React.Component {
       confirmResult: null
     };
   }
-
-  static navigationOptions = () => ({
-    headerTintColor: colors.light,
-    headerStyle: styles.headerStyle
-  });
 
   next = () => {
     const { step } = this.state;
@@ -120,7 +120,7 @@ class Signup extends React.Component {
             style={styles.inputStyle}
             keyboardType="phone-pad"
             value={number}
-            onChangeText={number => this.setState({ number })}
+            onChangeText={numberInput => this.setState({ number: numberInput })}
             error
           />
         </Item>
@@ -141,7 +141,7 @@ class Signup extends React.Component {
             style={styles.inputStyle}
             keyboardType="number-pad"
             value={otp}
-            onChangeText={otp => this.setState({ otp })}
+            onChangeText={otpInput => this.setState({ otp: otpInput })}
             error
           />
         </Item>
