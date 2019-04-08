@@ -17,10 +17,9 @@ export default class index extends Component {
     super(props);
 
     this.state = {
-      isBlur: true, // We can control with redux.
+      isBlur: false // We can control with redux.
       // For popup we can create functions like showPopup(title,descriptiion etc). and we can return different popup according to props.
       // When popup close, we can set isBlur as false with redux.
-      blurViewRef: null
     };
   }
 
@@ -48,21 +47,22 @@ export default class index extends Component {
               }}
               blurType="light"
               blurAmount={3}
-              viewRef={this.renderItem}
             />
           )}
-          <Popup
-            title="Voulez-vous vraiment annuler la course?"
-            description="Des frais supplementaires peuvent etra appliques"
-            buttonOneText="Non, je ne veux pas annuler"
-            buttonTwoText="Oui, jen suis sur"
-            buttonOneOnPress={() => {
-              this.setState({ isBlur: false });
-            }}
-            buttonTwoOnPress={() => {
-              this.setState({ isBlur: false });
-            }}
-          />
+          {this.state.isBlur && (
+            <Popup
+              title="Voulez-vous vraiment annuler la course?"
+              description="Des frais supplementaires peuvent etra appliques"
+              buttonOneText="Non, je ne veux pas annuler"
+              buttonTwoText="Oui, jen suis sur"
+              buttonOneOnPress={() => {
+                this.setState({ isBlur: false });
+              }}
+              buttonTwoOnPress={() => {
+                this.setState({ isBlur: false });
+              }}
+            />
+          )}
         </Provider>
       </Root>
     );
