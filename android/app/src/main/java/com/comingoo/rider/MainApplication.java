@@ -3,7 +3,7 @@ package com.comingoo.rider;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.bluroverly.SajjadBlurOverlayPackage;
+import com.cmcewen.blurview.BlurViewPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -40,7 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new SajjadBlurOverlayPackage(),
+            new BlurViewPackage(),
             new LinearGradientPackage(),
             new MapsPackage(),
             new RNI18nPackage(),

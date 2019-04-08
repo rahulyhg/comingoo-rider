@@ -1,11 +1,9 @@
 import React, { Component } from "react";
+import { View, findNodeHandle } from "react-native";
 import { Provider } from "react-redux";
 import { Root } from "native-base";
 
-import BlurOverlay, {
-  closeOverlay,
-  openOverlay
-} from "react-native-blur-overlay";
+import { BlurView, VibrancyView } from "react-native-blur";
 
 import { permissions } from "../helpers";
 
@@ -15,9 +13,18 @@ import { handlers } from "../helpers";
 import { Popup } from "../components";
 
 export default class index extends Component {
-  componentDidMount = async () => {
-    openOverlay(); // This makes the screen blur and open the popup.
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      isBlur: true, // We can control with redux.
+      // For popup we can create functions like showPopup(title,descriptiion etc). and we can return different popup according to props.
+      // When popup close, we can set isBlur as false with redux.
+      blurViewRef: null
+    };
+  }
+
+  componentDidMount = async () => {
     const hasPermissions = await permissions.checkLocationPermission();
     try {
       await permissions.requestLocationPermission();
@@ -30,26 +37,32 @@ export default class index extends Component {
       <Root>
         <Provider store={store}>
           <AppNavigator />
-          {/* <BlurOverlay
-            radius={14}
-            downsampling={2}
-            brightness={-200}
-            onPress={() => {
-              closeOverlay();
+          {this.state.isBlur && (
+            <BlurView
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0
+              }}
+              blurType="light"
+              blurAmount={3}
+              viewRef={this.renderItem}
+            />
+          )}
+          <Popup
+            title="Voulez-vous vraiment annuler la course?"
+            description="Des frais supplementaires peuvent etra appliques"
+            buttonOneText="Non, je ne veux pas annuler"
+            buttonTwoText="Oui, jen suis sur"
+            buttonOneOnPress={() => {
+              this.setState({ isBlur: false });
             }}
-            customStyles={{ alignItems: "center", justifyContent: "center" }}
-            blurStyle="light"
-            children={
-              <Popup
-                title="Voulez-vous vraiment annuler la course?"
-                description="Des frais supplementaires peuvent etra appliques"
-                buttonOneText="Non, je ne veux pas annuler"
-                buttonTwoText="Oui, jen suis sur"
-                buttonOneOnPress={() => console.warn("clicked button one")}
-                buttonTwoOnPress={() => console.warn("clicked button two")}
-              />
-            }
-          /> */}
+            buttonTwoOnPress={() => {
+              this.setState({ isBlur: false });
+            }}
+          />
         </Provider>
       </Root>
     );

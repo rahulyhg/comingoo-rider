@@ -5,11 +5,6 @@ import Dialog, {
   ScaleAnimation
 } from "react-native-popup-dialog";
 
-import BlurOverlay, {
-  closeOverlay,
-  openOverlay
-} from "react-native-blur-overlay";
-
 import LinearGradient from "react-native-linear-gradient";
 
 import styles from "./styles";
@@ -43,7 +38,6 @@ export default class Popup extends Component {
         }
         onTouchOutside={() => {
           this.setState({ visible: false });
-          closeOverlay();
         }}
         dialogStyle={{ backgroundColor: null }}
       >
@@ -59,13 +53,22 @@ export default class Popup extends Component {
               {
                 <TouchableOpacity
                   style={styles.buttonOneContainer}
-                  onPress={buttonOneOnPress}
+                  onPress={() => {
+                    this.setState({ visible: false });
+                    buttonOneOnPress();
+                  }}
                 >
                   <Text style={styles.buttonOneText}>{buttonOneText}</Text>
                 </TouchableOpacity>
               }
               {buttonTwoText && (
-                <Text style={styles.buttonTwoText} onPress={buttonTwoOnPress}>
+                <Text
+                  style={styles.buttonTwoText}
+                  onPress={() => {
+                    this.setState({ visible: false });
+                    buttonTwoOnPress();
+                  }}
+                >
                   {buttonTwoText}
                 </Text>
               )}
