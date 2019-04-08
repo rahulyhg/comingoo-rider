@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation';
-import { Dimensions } from 'react-native';
+import { createAppContainer, createStackNavigator, createDrawerNavigator, createSwitchNavigator } from 'react-navigation';
+import { Dimensions, Image } from 'react-native';
 import MapScreen from "../screens/Map";
 import login from '../screens/Login';
 import signUp from '../screens/Signup';
@@ -16,10 +16,75 @@ import DrawerNotifications from '../screens/DrawerScreens/Notifications'
 import DrawerReferAFriend from '../screens/DrawerScreens/ReferAFriend'
 import DrawerComingooAndYou from '../screens/DrawerScreens/ComingooAndYou'
 import DrawerHelp from '../screens/DrawerScreens/Help'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { icons } from '../utils';
+import styles from '../components/Main/styles';
 
-const deviceWidth = Dimensions.get("window").width;
 
-const StackTab = createStackNavigator({
+
+// const deviceWidth = Dimensions.get("window").width;
+
+const { width } = Dimensions.get('screen');
+
+
+const MainPageStack = createStackNavigator({
+  MainPage: { screen: Main }
+});
+
+const DrawerHomeStack = createStackNavigator({
+  DrawerHome: { screen: DrawerHome }
+});
+
+const DrawerHistoryStack = createStackNavigator({
+  DrawerHistory: { screen: DrawerHistory }
+});
+
+const DrawerNotificationsStack = createStackNavigator({
+  DrawerNotifications: { screen: DrawerNotifications }
+});
+
+const DrawerReferAFriendStack = createStackNavigator({
+  DrawerReferAFriend: { screen: DrawerReferAFriend }
+});
+
+const DrawerComingooAndYouStack = createStackNavigator({
+  DrawerComingooAndYou: { screen: DrawerComingooAndYou }
+});
+
+const DrawerHelpStack = createStackNavigator({
+  DrawerHelp: { screen: DrawerHelp }
+});
+
+const Drawerscreens = createDrawerNavigator({
+  MainPage: {
+    screen: MainPageStack
+  },
+  DrawerHome: {
+    screen: DrawerHomeStack
+  },
+  DrawerHistory: {
+    screen: DrawerHistoryStack
+  },
+  DrawerNotifications: {
+    screen: DrawerNotificationsStack
+  },
+  DrawerReferAFriend: {
+    screen: DrawerReferAFriendStack
+  },
+  DrawerComingooAndYou: {
+    screen: DrawerComingooAndYouStack
+  },
+  DrawerHelp: {
+    screen: DrawerHelpStack
+  }
+}, {
+    // drawerWidth: deviceWidth / 1.4,
+    drawerWidth: width,
+    initialRouteName: 'MainPage',
+    contentComponent: props => <Drawer {...props} />,
+  });
+
+const Loginscreen = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
@@ -39,38 +104,13 @@ const StackTab = createStackNavigator({
   Signup: {
     screen: signUp
   },
-  MainPage: {
-    screen: Main
-  },
-  DrawerHome: {
-    screen: DrawerHome
-  },
-  DrawerHistory: {
-    screen: DrawerHistory
-  },
-  DrawerNotifications: {
-    screen: DrawerNotifications
-  },
-  DrawerReferAFriend: {
-    screen: DrawerReferAFriend
-  },
-  DrawerComingooAndYou: {
-    screen: DrawerComingooAndYou
-  },
-  DrawerHelp: {
-    screen: DrawerHelp
-  },
-}, {
-    initialRouteName: 'Home'
-  });
+});
 
-
-const AppNavigator = createDrawerNavigator({
-  Tabs: StackTab
-}, {
-    drawerWidth: deviceWidth/1.4,
-    contentComponent: props => <Drawer {...props} />,
-  });
-
-
-export default createAppContainer(AppNavigator);
+export default createAppContainer(createSwitchNavigator({
+  LoginScreen: { screen: Loginscreen },
+  DrawerScreen: { screen: Drawerscreens }
+},
+  {
+    initialRouteName: 'LoginScreen'
+  }
+));
