@@ -1,11 +1,16 @@
 import React from "react";
-import { Text, View, TouchableOpacity, Image,  TouchableWithoutFeedback,
-  Keyboard } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard
+} from "react-native";
 import { connect } from "react-redux";
 import { Item, Label, Input } from "native-base";
 import PhoneInput from "react-native-phone-input";
 import CountryPicker from "react-native-country-picker-modal";
-
 
 import { handlers } from "../../helpers";
 import { loginWithFacebook } from "../../config/facebook";
@@ -69,7 +74,7 @@ class Signup extends React.Component {
       .then(confirmResult => {
         this.setState({ confirmResult: confirmResult });
         this.next();
-        return handlers.showToast(strings('signup.code_sent_your_phone'));
+        return handlers.showToast(strings("signup.code_sent_your_phone"));
       })
       .catch(error => console.log(error));
   };
@@ -88,7 +93,7 @@ class Signup extends React.Component {
       .then(user => {
         console.log(user);
         // user successfully signup, will navigate to nextpage...
-        return handlers.showToast(strings('signup.code_confirmed'));
+        return handlers.showToast(strings("signup.code_confirmed"));
       })
       .catch(error => {
         return handlers.showToast(error, "danger");
