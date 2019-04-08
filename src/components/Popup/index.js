@@ -5,6 +5,11 @@ import Dialog, {
   ScaleAnimation
 } from "react-native-popup-dialog";
 
+import BlurOverlay, {
+  closeOverlay,
+  openOverlay
+} from "react-native-blur-overlay";
+
 import LinearGradient from "react-native-linear-gradient";
 
 import styles from "./styles";
@@ -38,6 +43,7 @@ export default class Popup extends Component {
         }
         onTouchOutside={() => {
           this.setState({ visible: false });
+          closeOverlay();
         }}
         dialogStyle={{ backgroundColor: null }}
       >
