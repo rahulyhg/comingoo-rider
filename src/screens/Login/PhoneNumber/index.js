@@ -11,6 +11,10 @@ import {
 import { connect } from "react-redux";
 import firebase from "react-native-firebase";
 import { Item, Label, Input } from "native-base";
+
+import PhoneInput from "react-native-phone-input";
+import CountryPicker from "react-native-country-picker-modal";
+
 import { icons } from "../../../utils";
 import styles from "./styles";
 import { handlers } from "../../../helpers";
@@ -33,7 +37,8 @@ export default class PhoneNumber extends React.Component {
     this.state = {
       number: "",
       numberError: false,
-      confirmResult: null
+      confirmResult: null,
+      cca2: "US"
     };
   }
 
@@ -59,6 +64,15 @@ export default class PhoneNumber extends React.Component {
       .catch(error => console.log(error));
   };
 
+  onPressFlag = () => {
+    this.countryPicker.openModal();
+  };
+
+  selectCountry = country => {
+    this.phone.selectCountry(country.cca2.toLowerCase());
+    this.setState({ cca2: country.cca2 });
+  };
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -73,12 +87,28 @@ export default class PhoneNumber extends React.Component {
                 Phone Number
               </Label>
               <Item>
-                <Input
+                <PhoneInput
+                  ref={ref => {
+                    this.phone = ref;
+                  }}
+                  onPressFlag={this.onPressFlag}
                   style={styles.middleContainerInputOnChangeColor}
-                  keyboardType="phone-pad"
-                  onChangeText={number => this.setState({ number: number })}
+                  textStyle={styles.phoneNumberText}
+                  onChangePhoneNumber={phoneNumberText =>
+                    this.setState({ number: phoneNumberText })
+                  }
                   value={this.state.number}
                 />
+                <CountryPicker
+                  ref={ref => {
+                    this.countryPicker = ref;
+                  }}
+                  onChange={value => this.selectCountry(value)}
+                  translation={strings("signup.phone_number_language")}
+                  cca2={this.state.cca2}
+                >
+                  <View />
+                </CountryPicker>
               </Item>
             </View>
           </View>
