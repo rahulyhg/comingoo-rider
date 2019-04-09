@@ -1,9 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
-
-import { colors } from "../../constants";
-
 const { width, height } = Dimensions.get("window");
-
+import { colors } from "../../constants";
 export default StyleSheet.create({
   container: {
     backgroundColor: colors.bluePrimary,
@@ -59,39 +56,7 @@ export default StyleSheet.create({
     fontSize: width * 0.048
   },
   numberContainer: {
-    // justifyContent: "space-between",
-    alignItems: "center",
-    height: "100%"
-  },
-  fieldContainer: {
-    alignItems: "center"
-  },
-  labelStyle: {
-    color: colors.light,
-    fontSize: width * 0.04,
-    marginBottom: 8
-  },
-  inputs: {
-    marginTop: "10%"
-  },
-  inputStyle: {
-    width: width * 0.8
-  },
-  phoneNumberText: {
-    color: colors.light
-  },
-  nextBtn: {
-    backgroundColor: colors.light,
-    width: 60,
-    height: 60,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 1000,
-    marginBottom: height * 0.06,
-    marginTop: height * 0.3
-  },
-  btnImage: {
-    width: "80%",
-    height: "60%"
+    justifyContent: "space-between",
+    flex: 1
   }
 });

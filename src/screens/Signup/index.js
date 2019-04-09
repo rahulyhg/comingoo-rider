@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { Item, Label, Input } from "native-base";
+import PhoneInput from "react-native-phone-input";
+import CountryPicker from "react-native-country-picker-modal";
 
 import { handlers } from "../../helpers";
 import { loginWithFacebook } from "../../config/facebook";
@@ -35,7 +37,8 @@ class Signup extends React.Component {
       numberError: false,
       number: "",
       otp: "",
-      confirmResult: null
+      confirmResult: null,
+      cca2: "US"
     };
   }
 
@@ -57,6 +60,7 @@ class Signup extends React.Component {
 
   sendOTP = () => {
     const { number } = this.state;
+
     if (!number) {
       this.setState({
         numberError: !number
@@ -70,7 +74,7 @@ class Signup extends React.Component {
       .then(confirmResult => {
         this.setState({ confirmResult: confirmResult });
         this.next();
-        return handlers.showToast(strings('signup.code_sent_your_phone'));
+        return handlers.showToast(strings("signup.code_sent_your_phone"));
       })
       .catch(error => console.log(error));
   };
@@ -89,7 +93,7 @@ class Signup extends React.Component {
       .then(user => {
         console.log(user);
         // user successfully signup, will navigate to nextpage...
-        return handlers.showToast(strings('signup.code_confirmed'));
+        return handlers.showToast(strings("signup.code_confirmed"));
       })
       .catch(error => {
         return handlers.showToast(error, "danger");
@@ -108,6 +112,15 @@ class Signup extends React.Component {
     </TouchableOpacity>
   );
 
+  onPressFlag = () => {
+    this.countryPicker.openModal();
+  };
+
+  selectCountry = country => {
+    this.phone.selectCountry(country.cca2.toLowerCase());
+    this.setState({ cca2: country.cca2 });
+  };
+
   numberInput = () => {
     const { number, numberError } = this.state;
     return (
@@ -116,13 +129,28 @@ class Signup extends React.Component {
           <Label style={styles.labelStyle}>
             {strings("signup.phone_number")}
           </Label>
-          <Input
+          <PhoneInput
+            ref={ref => {
+              this.phone = ref;
+            }}
+            onPressFlag={this.onPressFlag}
             style={styles.inputStyle}
-            keyboardType="phone-pad"
+            textStyle={styles.phoneNumberText}
+            onChangePhoneNumber={phoneNumberText =>
+              this.setState({ number: phoneNumberText })
+            }
             value={number}
-            onChangeText={numberInput => this.setState({ number: numberInput })}
-            error
           />
+          <CountryPicker
+            ref={ref => {
+              this.countryPicker = ref;
+            }}
+            onChange={value => this.selectCountry(value)}
+            translation={strings("signup.phone_number_language")}
+            cca2={this.state.cca2}
+          >
+            <View />
+          </CountryPicker>
         </Item>
         <TouchableOpacity style={styles.nextBtn} onPress={this.sendOTP}>
           <Image style={styles.btnImage} source={icons.right_arrow} />
