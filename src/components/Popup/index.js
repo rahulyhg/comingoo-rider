@@ -40,6 +40,7 @@ export default class Popup extends Component {
           this.setState({ visible: false });
         }}
         dialogStyle={{ backgroundColor: null }}
+        hasOverlay={false}
       >
         <DialogContent>
           <LinearGradient
