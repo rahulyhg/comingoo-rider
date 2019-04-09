@@ -32,6 +32,8 @@ FOUNDATION_EXPORT NSString *const FBSDKApplicationDidBecomeActiveNotification;
 
 #endif
 
+@class FBSDKApplicationCall;
+
 #if !TARGET_OS_TV
 typedef void(^FBSDKBridgeAPICallbackBlock)(FBSDKBridgeAPIResponse *response);
 #endif

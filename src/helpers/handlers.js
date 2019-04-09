@@ -3,11 +3,12 @@ import { Toast } from "native-base";
 import { View, ActivityIndicator } from "react-native";
 
 import { colors } from "../constants";
+import { strings } from "../../locale/i18n";
 
 const showToast = (message = "", type = "success", duration = 3000) => {
   return Toast.show({
     text: message,
-    buttonText: "d'accord",
+    buttonText: strings('handlers.okay'),
     type,
     duration
   });

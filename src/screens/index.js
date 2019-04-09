@@ -10,7 +10,7 @@ import { Root } from "native-base";
 
 import { BlurView, VibrancyView } from "react-native-blur";
 
-import { permissions } from "../helpers";
+import { permissions, handlers } from "../helpers";
 
 import { store } from "../store";
 import AppNavigator from "../navigations/index";
@@ -54,7 +54,8 @@ export default class index extends Component {
             style={[
               styles.mainView,
               {
-                opacity: this.state.isShowingPopup && Platform.OS === "android" ? 0 : 1
+                opacity:
+                  this.state.isShowingPopup && Platform.OS === "android" ? 0 : 1
               }
             ]}
             ref={ref => (this._viewRef = ref)}

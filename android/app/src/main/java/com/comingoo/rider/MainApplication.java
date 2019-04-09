@@ -5,6 +5,10 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
+
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -42,10 +46,12 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new BlurViewPackage(),
             new LinearGradientPackage(),
+            new RNFirebasePackage(),
             new MapsPackage(),
             new RNI18nPackage(),
             new FBSDKPackage(mCallbackManager),
-            new RNGestureHandlerPackage()
+            new RNGestureHandlerPackage(),
+            new RNFirebaseAuthPackage() 
       );
     }
 
