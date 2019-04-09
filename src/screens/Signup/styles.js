@@ -68,13 +68,16 @@ export default StyleSheet.create({
   },
   labelStyle: {
     color: colors.light,
-    fontSize: width * 0.04
+    fontSize: width * 0.04,
+    marginBottom: 8
   },
   inputs: {
     marginTop: "10%"
   },
   inputStyle: {
-    width: width * 0.8,
+    width: width * 0.8
+  },
+  phoneNumberText: {
     color: colors.light
   },
   nextBtn: {

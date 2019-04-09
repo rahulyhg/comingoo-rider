@@ -22,6 +22,7 @@
     "step_1": "Please sign up with your facebook account to continue",
     "step_2": "Enter your phone number",
     "step_3": "A varification code has been sent to your phone number, please enter it below to continue",
+    "phone_number_language": "eng",
     "code_sent_your_phone": "Code sent to your phone.",
     "code_confirmed": "Code confirmed"
   },
