@@ -76,7 +76,7 @@ const Drawerscreens = createDrawerNavigator({
     screen: DrawerHelpStack
   }
 }, {
-    drawerWidth: deviceWidth / 1.33,
+    drawerWidth: deviceWidth / 1.32,
     initialRouteName: 'MainPage',
     contentComponent: props => <Drawer {...props} />,
   });

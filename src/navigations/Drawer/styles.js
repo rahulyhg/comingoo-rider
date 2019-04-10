@@ -12,7 +12,7 @@ export default StyleSheet.create({
     },
     backgroundDrawerImage: {
         flex: 1,
-        width: width / 1.15, height: "100%",
+        width: width / 1.145, height: "100%",
     },
     innerContainer: {
         flex: 1
@@ -43,7 +43,7 @@ export default StyleSheet.create({
     underline: {
         backgroundColor: "#fff",
         height: 2,
-        width: width / 1.33
+        width: width / 1.32
     },
     bottomContainer: { flex: 0.1, justifyContent: 'center', alignItems: "center", },
     bottomInnerContainer: { flexDirection: "row", paddingRight: "30%", width: '65%' },
