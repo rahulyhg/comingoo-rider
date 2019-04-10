@@ -21,7 +21,8 @@
     "step_3": "Un code de vérification a été envoyé à votre numéro de téléphone. Veuillez le saisir ci-dessous pour continuer.",
     "phone_number_language": "fra",
     "code_sent_your_phone": "Code envoyé à votre téléphone.",
-    "code_confirmed": "Code confirmé."
+    "code_confirmed": "Code confirmé.",
+    "wrong_otp_toast":"Mot de passe incorrect"
   },
   "handlers": {
     "okay": "d'accord"

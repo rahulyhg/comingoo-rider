@@ -75,7 +75,9 @@ export default StyleSheet.create({
     marginTop: "10%"
   },
   inputStyle: {
-    width: width * 0.8
+    width: width * 0.8,
+    color: colors.light,
+    paddingBottom: 2
   },
   phoneNumberText: {
     color: colors.light

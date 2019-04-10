@@ -32,8 +32,9 @@
     "step_3": "A varification code has been sent to your phone number, please enter it below to continue",
     "phone_number_language": "eng",
     "code_sent_your_phone": "Code sent to your phone.",
-    "code_confirmed": "Code confirmed"
-  },
+    "code_confirmed": "Code confirmed",
+    "wrong_otp_toast":"Incorrect Password"
+    },
   "handlers": {
     "okay": "Okay"
   }

@@ -55,7 +55,7 @@ export default class OtpVerification extends React.Component {
         return handlers.showToast(strings("signup.code_confirmed"));
       })
       .catch(error => {
-        return handlers.showToast(error, "danger");
+        return handlers.showToast(strings("signup.wrong_otp_toast"), "danger");
       });
   };
 
