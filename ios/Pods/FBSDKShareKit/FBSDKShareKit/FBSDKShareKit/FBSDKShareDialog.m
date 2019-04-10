@@ -24,7 +24,6 @@
 #import "FBSDKShareCameraEffectContent.h"
 #import "FBSDKShareConstants.h"
 #import "FBSDKShareDefines.h"
-#import "FBSDKShareExtension.h"
 #import "FBSDKShareLinkContent.h"
 #import "FBSDKShareMediaContent.h"
 #import "FBSDKShareOpenGraphAction.h"
@@ -1170,42 +1169,56 @@ static inline void FBSDKShareDialogValidateShareExtensionSchemeRegisteredForCanO
 - (NSString *)_calculateInitialText
 {
   NSString *initialText;
-  NSString *const hashtag = [FBSDKShareUtility hashtagStringFromHashtag:self.shareContent.hashtag];
   if ([self _canAttributeThroughShareSheet]) {
-    NSMutableDictionary<NSString *, id> *const parameters = [NSMutableDictionary new];
-    NSString *const appID = [FBSDKSettings appID];
-    if (appID.length > 0) {
-      parameters[FBSDKShareExtensionParamAppID] = [FBSDKSettings appID];
-    }
-    if (hashtag.length > 0) {
-      parameters[FBSDKShareExtensionParamHashtags] = @[hashtag];
+    NSMutableDictionary *initialTextDictionary = [NSMutableDictionary new];
+    initialTextDictionary[@"app_id"] = [FBSDKSettings appID];
+    NSString *hashtag = [FBSDKShareUtility hashtagStringFromHashtag:self.shareContent.hashtag];
+    if (hashtag != nil) {
+      initialTextDictionary[@"hashtags"] = @[hashtag];
     }
     if ([self.shareContent isKindOfClass:[FBSDKShareLinkContent class]]) {
-      NSString *const quote = ((FBSDKShareLinkContent *)self.shareContent).quote;
-      if (quote.length > 0) {
-        parameters[FBSDKShareExtensionParamQuotes] = @[quote];
+      NSString *quote = ((FBSDKShareLinkContent *)self.shareContent).quote;
+      if (quote != nil) {
+        initialTextDictionary[@"quotes"] = @[quote];
       }
     }
     if ([self.shareContent isKindOfClass:[FBSDKShareOpenGraphContent class]]) {
-      NSDictionary<NSString *, id> *const ogData = [FBSDKShareUtility parametersForShareContent:self.shareContent
-                                                                                  bridgeOptions:FBSDKShareBridgeOptionsDefault
-                                                                          shouldFailOnDataError:self.shouldFailOnDataError];
-      parameters[FBSDKShareExtensionParamOGData] = ogData;
+      NSDictionary *ogData = [FBSDKShareUtility parametersForShareContent:self.shareContent
+                                                            bridgeOptions:FBSDKShareBridgeOptionsDefault
+                                                    shouldFailOnDataError:self.shouldFailOnDataError];
+      initialTextDictionary[@"og_data"] = ogData;
     }
 
     NSError *error = nil;
-    NSString *const jsonString = [FBSDKInternalUtility JSONStringForObject:parameters error:&error invalidObjectHandler:NULL];
+    NSString *jsonString = [FBSDKInternalUtility JSONStringForObject:initialTextDictionary error:&error invalidObjectHandler:NULL];
     if (error != nil) {
       return nil;
     }
 
-    initialText = FBSDKShareExtensionInitialText(appID, hashtag, jsonString);
+    NSString *JSONStartDelimiter = @"|";
+    initialText = [NSString stringWithFormat:@"%@%@%@",
+                   [self _calculatePreJSONInitialTextWithHashtag:hashtag],
+                   JSONStartDelimiter,
+                   jsonString];
   } else {
-    if (hashtag.length > 0) {
+    NSString *hashtag = [FBSDKShareUtility hashtagStringFromHashtag:self.shareContent.hashtag];
+    if (hashtag != nil) {
       initialText = hashtag;
     }
   }
   return initialText;
+}
+
+// Not all versions of the Share Extension support JSON. Adding this text before allows backward compatibility
+- (NSString *)_calculatePreJSONInitialTextWithHashtag:(NSString *)hashtag
+{
+  NSMutableString *text = [NSMutableString new];
+  [text appendString:[NSString stringWithFormat:@"fb-app-id:%@", [FBSDKSettings appID]]];
+  if (hashtag != nil) {
+    [text appendString:@" "];
+    [text appendString:hashtag];
+  }
+  return [text copy];
 }
 
 @end

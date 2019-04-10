@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import styles from "./styles";
 import { colors } from "../../constants";
 import { icons } from "../../utils";
-import { loginWithFacebook } from '../../config/facebook';
+import { loginWithFacebook } from "../../config/facebook";
 import { strings } from "../../../locale/i18n";
 
 class Login extends React.Component {
@@ -23,30 +23,25 @@ class Login extends React.Component {
     } catch (error) {
       console.log(error);
     }
-  }
-  login = () => {
-    // const { onLogin } = this.props;
-    // onLogin();
-    this.navigate("Map");
-  };
-
-  navigate = route => {
-    const { navigation } = this.props;
-    navigation.navigate(route);
   };
 
   buttons = () => (
     <View>
-      <TouchableOpacity style={styles.btn} onPress={this.facebookAuthentication}>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={this.facebookAuthentication}
+      >
         <Image
           source={icons.fb_icon}
           style={styles.iconStyle}
           resizeMode="contain"
         />
         <View style={styles.seperator} />
-        <Text style={styles.btnTxt}>{strings('login.login_with_facebook')}</Text>
+        <Text style={styles.btnTxt}>
+          {strings("login.login_with_facebook")}
+        </Text>
       </TouchableOpacity>
-      <Text>{" "}</Text>
+      <Text> </Text>
 
       <TouchableOpacity style={styles.btn} onPress={this.phoneNumberScreen}>
         <Image
@@ -55,7 +50,9 @@ class Login extends React.Component {
           resizeMode="contain"
         />
         <View style={styles.seperator} />
-        <Text style={styles.btnTxt}>{strings('login.login_with_phone_number')}</Text>
+        <Text style={styles.btnTxt}>
+          {strings("login.login_with_phone_number")}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -63,9 +60,9 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-          <Text style={styles.mediumTxt}>{strings('home.sign_in')}</Text>
+          <Text style={styles.mediumTxt}>{strings("home.sign_in")}</Text>
           <Text style={styles.smallTxt}>
-            {strings('login.sign_in_with_facebook_or_phone_number')}
+            {strings("login.sign_in_with_facebook_or_phone_number")}
           </Text>
         </View>
         <View style={styles.middleContainer}>{this.buttons()}</View>
@@ -79,4 +76,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Login);
-
