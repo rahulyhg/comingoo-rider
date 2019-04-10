@@ -112,10 +112,21 @@ android {
             include "armeabi-v7a", "x86", "arm64-v8a"
         }
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('COMINGOO_RELEASE_STORE_FILE')) {
+                storeFile file(COMINGOO_RELEASE_STORE_FILE)
+                storePassword COMINGOO_RELEASE_STORE_PASSWORD
+                keyAlias COMINGOO_RELEASE_KEY_ALIAS
+                keyPassword COMINGOO_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
