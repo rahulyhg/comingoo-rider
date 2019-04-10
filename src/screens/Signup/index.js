@@ -171,6 +171,7 @@ class Signup extends React.Component {
             value={otp}
             onChangeText={otpInput => this.setState({ otp: otpInput })}
             error
+            secureTextEntry
           />
         </Item>
         <TouchableOpacity style={styles.nextBtn} onPress={this.verifyOTP}>
