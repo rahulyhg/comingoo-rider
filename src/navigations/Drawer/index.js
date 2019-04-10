@@ -9,7 +9,7 @@ export default class Drawer extends Component {
 
 
     homeNavigation = () => {
-        this.props.navigation.navigate("DrawerHome");
+        this.props.navigation.navigate("Map");
     }
 
 

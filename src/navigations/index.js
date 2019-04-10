@@ -25,7 +25,8 @@ import styles from '../components/Main/styles';
 const deviceWidth = Dimensions.get("window").width;
 
 const MainPageStack = createStackNavigator({
-  MainPage: { screen: Main }
+  // MainPage: { screen: Main }
+  Map: { screen: MapScreen }
 });
 
 const DrawerHomeStack = createStackNavigator({
@@ -90,7 +91,7 @@ const Loginscreen = createStackNavigator({
   Login: {
     screen: login
   },
-  Map: { screen: MapScreen },
+  // Map: { screen: MapScreen },
   LoginPhoneNumber: {
     screen: loginPhoneNumber
   },

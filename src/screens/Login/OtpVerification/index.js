@@ -51,7 +51,7 @@ export default class OtpVerification extends React.Component {
       .confirm(otp)
       .then(user => {
         console.log(user);
-        this.props.navigation.navigate("MainPage");
+        this.props.navigation.navigate("Map");
         return handlers.showToast(strings("signup.code_confirmed"));
       })
       .catch(error => {
