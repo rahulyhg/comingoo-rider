@@ -2,26 +2,26 @@ import { Dimensions, StyleSheet } from "react-native";
 
 import { colors } from "../../constants/index";
 
-const {width, height} = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: 'transparent',
+        
     },
     backgroundDrawerImage: {
-      flex:1,
-      width:width*1.150
+        flex: 1,
+        width: width / 1.15, height: "100%",
     },
     innerContainer: {
-        flex: 1,
+        flex: 1
     },
     innerViewContainer: {
-        flex: 0.25, justifyContent: 'center', alignItems: 'flex-start', paddingLeft:width*0.16
+        flex: 0.20, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: width * 0.08
     },
     innerThumbnailAndTextContainer: {
-        flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',width:"55%"
+        flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "65%"
     },
     thumbnailContainer: {
         backgroundColor: "#fff",
@@ -32,7 +32,7 @@ export default StyleSheet.create({
         borderRadius: 1000,
     },
     textContainer: { fontSize: 20, color: '#fff' },
-    middleContainer: { flex: 0.7, justifyContent: "flex-start", alignItems: 'flex-start', marginTop: 50,paddingLeft:width*0.16 },
+    middleContainer: { flex: 0.7, justifyContent: "flex-start", alignItems: 'center', marginTop: 50 },
     mainContainer: { flex: 1, width: "65%" },
     mainContainerImageAndText: { flexDirection: "row", alignItems: 'center' },
     mainContainerStyles: {
@@ -43,10 +43,10 @@ export default StyleSheet.create({
     underline: {
         backgroundColor: "#fff",
         height: 2,
-        width: width 
+        width: width / 1.33
     },
-    bottomContainer: { flex: 0.1, justifyContent: 'center', alignItems: "center"},
-    bottomInnerContainer: { flexDirection: "row" },
+    bottomContainer: { flex: 0.1, justifyContent: 'center', alignItems: "center", },
+    bottomInnerContainer: { flexDirection: "row", paddingRight: "30%", width: '65%' },
     bottomImageStyle: {
         width: "24%",
         height: "80%"

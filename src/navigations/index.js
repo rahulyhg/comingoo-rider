@@ -22,10 +22,7 @@ import styles from '../components/Main/styles';
 
 
 
-// const deviceWidth = Dimensions.get("window").width;
-
-const { width } = Dimensions.get('screen');
-
+const deviceWidth = Dimensions.get("window").width;
 
 const MainPageStack = createStackNavigator({
   MainPage: { screen: Main }
@@ -78,8 +75,7 @@ const Drawerscreens = createDrawerNavigator({
     screen: DrawerHelpStack
   }
 }, {
-    // drawerWidth: deviceWidth / 1.4,
-    drawerWidth: width,
+    drawerWidth: deviceWidth / 1.33,
     initialRouteName: 'MainPage',
     contentComponent: props => <Drawer {...props} />,
   });
