@@ -3,7 +3,6 @@ import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
 
 import { images } from "../../utils";
 import styles from "./styles";
-import { TEST_CONST } from "react-native-dotenv";
 import { strings } from "../../../locale/i18n";
 
 export default class Home extends Component {
