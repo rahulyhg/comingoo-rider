@@ -96,7 +96,7 @@ class Signup extends React.Component {
         return handlers.showToast(strings("signup.code_confirmed"));
       })
       .catch(error => {
-        return handlers.showToast(error, "danger");
+        return handlers.showToast(strings("signup.code_incorrect"), "danger");
       });
   };
 
@@ -171,6 +171,7 @@ class Signup extends React.Component {
             value={otp}
             onChangeText={otpInput => this.setState({ otp: otpInput })}
             error
+            secureTextEntry
           />
         </Item>
         <TouchableOpacity style={styles.nextBtn} onPress={this.verifyOTP}>
