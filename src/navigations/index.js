@@ -5,7 +5,7 @@ import {
   createDrawerNavigator,
   createSwitchNavigator
 } from "react-navigation";
-import { Dimensions, Image } from "react-native";
+import { Dimensions, Image, Platform } from "react-native";
 import MapScreen from "../screens/Map";
 import login from "../screens/Login";
 import signUp from "../screens/Signup";
@@ -80,7 +80,7 @@ const Drawerscreens = createDrawerNavigator(
     }
   },
   {
-    drawerWidth: deviceWidth / 1.47,
+    drawerWidth: Platform.OS === "ios" ? deviceWidth / 1.47 : deviceWidth / 1.4,
     initialRouteName: "MainPage",
     contentComponent: props => <Drawer {...props} />
   }
@@ -115,7 +115,7 @@ export default createAppContainer(
       DrawerScreen: { screen: Drawerscreens }
     },
     {
-      initialRouteName: "DrawerScreen"
+      initialRouteName: "LoginScreen"
     }
   )
 );
