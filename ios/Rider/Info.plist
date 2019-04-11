@@ -66,7 +66,9 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>Comingoo needs your location to show you places</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Comingoo needs your location to show you places</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

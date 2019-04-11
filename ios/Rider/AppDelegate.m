@@ -13,15 +13,20 @@
 
 #import <Firebase.h>
 
+@import GooglePlaces; 
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
+
+  [GMSPlacesClient provideAPIKey:@"AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0"];
+  [GMSServices provideAPIKey:@"AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0"];
   
   NSURL *jsCodeLocation;
   
-  [GMSServices provideAPIKey:@"AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0"];
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
