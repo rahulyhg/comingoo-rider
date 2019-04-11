@@ -14,7 +14,6 @@ import { permissions, handlers } from "../helpers";
 
 import { store } from "../store";
 import AppNavigator from "../navigations/index";
-import { handlers } from "../helpers";
 import { Popup } from "../components";
 
 import styles from "./styles";

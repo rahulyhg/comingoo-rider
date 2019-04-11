@@ -26,7 +26,7 @@ export default class SearchBar extends Component {
           <Text style={styles.seperater}> | </Text>
           <Image
             source={icons.car_time}
-            style={styles.carTimeIcon}}
+            style={styles.carTimeIcon}
           />
         </View>
       </View>
