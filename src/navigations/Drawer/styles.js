@@ -54,7 +54,7 @@ export default StyleSheet.create({
   underline: {
     backgroundColor: "#fff",
     height: 2,
-    width: width / 1.4
+    width: Platform.OS === "android" ? width / 1.4 : width / 1.47
   },
   bottomContainer: {
     flex: 0.1,
