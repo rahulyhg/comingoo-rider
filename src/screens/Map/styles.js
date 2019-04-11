@@ -51,8 +51,8 @@ export default StyleSheet.create({
     borderRadius: 10
   },
   cancelIcon: {
-    width: 20,
-    height: 20,
+    width: 17,
+    height: 17,
     alignSelf: "flex-end",
     marginRight: 10,
     marginBottom: 10
@@ -93,11 +93,13 @@ export default StyleSheet.create({
     fontSize: 13,
     marginTop: 2
   },
-  addIcon: {
-    width: 16,
-    height: 13,
+  addIconContainer: {
     position: "absolute",
     right: 5
+  },
+  addIcon: {
+    width: 16,
+    height: 13
   },
   eachListContainer: {
     flexDirection: "row",

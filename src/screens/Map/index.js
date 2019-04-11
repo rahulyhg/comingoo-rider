@@ -44,6 +44,8 @@ export class index extends Component {
           longitude: -122.4053769
         }
       ],
+      inputCoordinate: null,
+      userCoordinate: null,
       watchId: "",
       collapsed: true,
       exampleFavoritePlacesData: [
@@ -95,7 +97,7 @@ export class index extends Component {
 
   getCurrentLocationOfRider = async () => {
     await navigator.geolocation.getCurrentPosition(position => {
-      console.warn(position);
+      this.setState({ userCoordinate: position.coords });
     });
   };
 
@@ -114,13 +116,14 @@ export class index extends Component {
           <Image source={icons.cancel} style={styles.cancelIcon} />
         </TouchableOpacity>
         <View style={styles.collapsibleSearchBar}>
-          <SearchBar />
+          <SearchBar canInput />
         </View>
         <ScrollView
           contentContainerStyle={{
             marginTop: 7,
             padding: 20
           }}
+          showsVerticalScrollIndicator={false}
         >
           <View style={{ flex: 1 }}>
             <Text style={styles.listTitleText}>Favorite places:</Text>
@@ -140,7 +143,12 @@ export class index extends Component {
                       {item.description}
                     </Text>
                   </View>
-                  <Image source={icons.add_icon} style={styles.addIcon} />
+                  <TouchableOpacity
+                    onPress={() => console.warn("clicked add icon")}
+                    style={styles.addIconContainer}
+                  >
+                    <Image source={icons.add_icon} style={styles.addIcon} />
+                  </TouchableOpacity>
                 </View>
               )}
             />
@@ -208,13 +216,13 @@ export class index extends Component {
           provider={PROVIDER_GOOGLE}
           customMapStyle={mapStyle}
         >
-          {this.state.coordinates.map((coordinate, index) => (
+          {/* this.state.coordinates.map((coordinate, index) => (
             <MapView.Marker
               key={`coordinate_${index}`}
               coordinate={coordinate}
             />
-          ))}
-          {this.state.coordinates.length >= 2 && (
+          )) */}
+          {this.state.coordinates.length >= 3 && (
             <MapViewDirections
               origin={this.state.coordinates[0]}
               waypoints={
@@ -253,6 +261,20 @@ export class index extends Component {
               }}
             />
           )}
+          <MapView.Marker
+            coordinate={this.state.coordinates[1]}
+            draggable
+            onDragEnd={e =>
+              this.setState({ inputCoordinate: e.nativeEvent.coordinate })
+            }
+          >
+            <View hitSlop={{ left: -10, right: -10, top: -10, bottom: 10 }}>
+              <Image
+                source={require("../../assets/icons/pickup_pin.png")}
+                style={{ width: 30, height: 50 }}
+              />
+            </View>
+          </MapView.Marker>
         </MapView>
         <View style={styles.actionsView}>
           <TouchableOpacity onPress={this.getCurrentLocationOfRider}>
@@ -265,7 +287,7 @@ export class index extends Component {
             style={styles.searchBarContainer}
             onPress={this.toggleExpanded}
           >
-            <SearchBar />
+            <SearchBar canInput={false} />
           </TouchableOpacity>
 
           <View style={styles.setPickupContainer}>
