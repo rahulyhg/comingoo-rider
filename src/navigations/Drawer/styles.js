@@ -12,13 +12,13 @@ export default StyleSheet.create({
     },
     backgroundDrawerImage: {
         flex: 1,
-        width: width / 1.145, height: "100%",
+        width:width/1.22
     },
     innerContainer: {
         flex: 1
     },
     innerViewContainer: {
-        flex: 0.20, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: width * 0.08
+        flex: 0.22, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: width * 0.08
     },
     innerThumbnailAndTextContainer: {
         flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "65%"
@@ -43,7 +43,7 @@ export default StyleSheet.create({
     underline: {
         backgroundColor: "#fff",
         height: 2,
-        width: width / 1.32
+        width: width / 1.4
     },
     bottomContainer: { flex: 0.1, justifyContent: 'center', alignItems: "center", },
     bottomInnerContainer: { flexDirection: "row", paddingRight: "30%", width: '65%' },

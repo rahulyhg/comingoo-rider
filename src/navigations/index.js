@@ -76,7 +76,7 @@ const Drawerscreens = createDrawerNavigator({
     screen: DrawerHelpStack
   }
 }, {
-    drawerWidth: deviceWidth / 1.32,
+    drawerWidth: deviceWidth / 1.4,
     initialRouteName: 'MainPage',
     contentComponent: props => <Drawer {...props} />,
   });
@@ -108,6 +108,6 @@ export default createAppContainer(createSwitchNavigator({
   DrawerScreen: { screen: Drawerscreens }
 },
   {
-    initialRouteName: 'LoginScreen'
+    initialRouteName: 'DrawerScreen'
   }
 ));
