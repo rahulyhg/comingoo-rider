@@ -33,7 +33,8 @@
     "phone_number_language": "eng",
     "code_sent_your_phone": "Code sent to your phone.",
     "code_confirmed": "Code confirmed",
-    "wrong_otp_toast":"Incorrect Password"
+    "wrong_otp_toast":"Incorrect Password",
+    "code_incorrect": "Wrong code"
     },
   "handlers": {
     "okay": "Okay"

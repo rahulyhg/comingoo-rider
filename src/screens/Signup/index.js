@@ -96,7 +96,7 @@ class Signup extends React.Component {
         return handlers.showToast(strings("signup.code_confirmed"));
       })
       .catch(error => {
-        return handlers.showToast(error, "danger");
+        return handlers.showToast(strings("signup.code_incorrect"), "danger");
       });
   };
 

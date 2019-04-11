@@ -108,6 +108,6 @@ export default createAppContainer(createSwitchNavigator({
   DrawerScreen: { screen: Drawerscreens }
 },
   {
-    initialRouteName: 'DrawerScreen'
+    initialRouteName: 'Loginscreen'
   }
 ));
