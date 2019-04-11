@@ -6,6 +6,7 @@ import { colors } from "../../constants";
 import { icons } from "../../utils";
 import { loginWithFacebook } from "../../config/facebook";
 import { strings } from "../../../locale/i18n";
+import { requestFacebooklogin } from '../../store/auth/actions'
 
 class Login extends React.Component {
   static navigationOptions = () => ({
@@ -19,7 +20,8 @@ class Login extends React.Component {
   facebookAuthentication = async () => {
     try {
       const user = await loginWithFacebook();
-      console.log(user);
+      await this.props.dispatch(requestFacebooklogin(user.email));
+      this.props.navigation.navigate("Map");
     } catch (error) {
       console.log(error);
     }
@@ -71,8 +73,9 @@ class Login extends React.Component {
   }
 }
 const mapStateToProps = state => ({});
-const mapDispatchToProps = {};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+// const mapDispatchToProps = {};
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Login);
+export default connect(mapStateToProps)(Login)

@@ -1,7 +1,19 @@
-import { LOGIN, LOGOUT, ERROR, UPDATE_USER } from "./types";
+import { LOGIN, LOGOUT, ERROR, REQUEST_FACEBOOK_LOGIN } from "./types";
+
 
 const initialState = {
-  user: null,
+  user: {
+    auth_token: "",
+    created_at: "",
+    email: "",
+    full_name: "",
+    gender: "",
+    id: "",
+    last_login_at: "",
+    phone: "",
+    profile_picture_url: "",
+    updated_at: ""
+  },
   error: ""
 };
 
@@ -16,10 +28,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: null
       };
-    case UPDATE_USER:
+    case REQUEST_FACEBOOK_LOGIN:
       return {
         ...state,
-        user: { ...state.user, ...action.payload }
+        user: { ...action.payload }
       };
     case ERROR:
       return {
@@ -31,4 +43,8 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+export const getUser = state => state.authReducer.user;
+
 export default reducer;
+
+

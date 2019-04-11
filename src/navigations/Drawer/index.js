@@ -10,9 +10,11 @@ import {
 import { Thumbnail, Button } from "native-base";
 import { icons, images } from "../../utils";
 import styles from "./styles";
+import { getUser } from "../../store/auth/reducers";
 const { width, height } = Dimensions.get("window");
+import { connect } from 'react-redux';
 
-export default class Drawer extends Component {
+class Drawer extends Component {
   homeNavigation = () => {
     this.props.navigation.navigate("Map");
   };
@@ -55,7 +57,7 @@ export default class Drawer extends Component {
                 </View>
 
                 <View style={styles.textViewContainer}>
-                  <Text style={styles.textContainer}>Comingoo</Text>
+                  <Text style={styles.textContainer}>{this.props.user.full_name}</Text>
                 </View>
               </View>
             </View>
@@ -172,3 +174,12 @@ export default class Drawer extends Component {
     );
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    user: getUser(state),
+  }
+}
+
+export default connect(mapStateToProps)(Drawer);
