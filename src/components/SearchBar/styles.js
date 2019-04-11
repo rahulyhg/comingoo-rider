@@ -29,5 +29,5 @@ export default StyleSheet.create({
   },
   searchIcon: { width: 21, height: 21 },
   seperater: { fontSize: 24.5 },
-  carTimeIcon: { width: 22, height: 22 
+  carTimeIcon: { width: 22, height: 22 }
 });
