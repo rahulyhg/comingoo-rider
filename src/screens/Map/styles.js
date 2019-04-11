@@ -42,25 +42,70 @@ export default StyleSheet.create({
   collabsibleAncestorContainer: {
     position: "absolute",
     bottom: 0,
-    flex: 1,
     left: 10,
     right: 10
   },
   collapsible: {
     backgroundColor: "#F2F2F2",
-    width: width,
     height: height / 1.21,
-    padding: 10
+    borderRadius: 10
   },
   cancelIcon: {
     width: 20,
     height: 20,
     alignSelf: "flex-end",
-    marginRight: 30,
+    marginRight: 10,
     marginBottom: 10
   },
   collapsibleSearchBar: {
     backgroundColor: "#F2F2F2",
     width: width - 45
-  }
+  },
+  listTitleText: {
+    color: "#2D3457",
+    fontSize: 15,
+    fontWeight: "700",
+    marginBottom: 7
+  },
+  showMoreText: {
+    textAlign: "center",
+    textDecorationLine: "underline",
+    color: "#2D3457",
+    fontWeight: "600"
+  },
+  listsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomColor: "#DBDBDB",
+    borderBottomWidth: 1,
+    paddingBottom: 10,
+    marginBottom: 10
+  },
+  fileHomeIcon: { width: 16, height: 13, marginRight: 10 },
+  listItemTitle: {
+    color: "#2D3457",
+    fontWeight: "600",
+    fontSize: 15
+  },
+  lisItemDescription: {
+    color: "#B3B3B3",
+    fontWeight: "600",
+    fontSize: 13,
+    marginTop: 2
+  },
+  addIcon: {
+    width: 16,
+    height: 13,
+    position: "absolute",
+    right: 5
+  },
+  eachListContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomColor: "#DBDBDB",
+    borderBottomWidth: 1,
+    paddingBottom: 10,
+    marginBottom: 10
+  },
+  locationIcon: { width: 13, height: 18, marginRight: 10 }
 });

@@ -1,10 +1,19 @@
 import React, { Component } from "react";
-import { View, Dimensions, Image, TouchableOpacity, Text } from "react-native";
+import {
+  View,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+  Text,
+  FlatList,
+  ScrollView
+} from "react-native";
 import { connect } from "react-redux";
 
 import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import Collapsible from "react-native-collapsible";
+
 import { SearchBar, Button } from "../../components/";
 
 import { handlers } from "../../helpers";
@@ -36,7 +45,35 @@ export class index extends Component {
         }
       ],
       watchId: "",
-      collapsed: true
+      collapsed: true,
+      exampleFavoritePlacesData: [
+        {
+          title: "Work",
+          description: "Cafe le visar"
+        },
+        {
+          title: "Home",
+          description: "Residence andalusia"
+        }
+      ],
+      exampleRecentPlacesData: [
+        {
+          title: "Boulevard de l'Atlantide",
+          description: "Casablanca"
+        },
+        {
+          title: "Mc Donald's",
+          description: "Mc Donald's - - Casablanca"
+        },
+        {
+          title: "Boulevard de l'Atlantide",
+          description: "Casablanca"
+        },
+        {
+          title: "Mc Donald's",
+          description: "Mc Donald's - - Casablanca"
+        }
+      ]
     };
     this.mapView = null;
   }
@@ -64,6 +101,95 @@ export class index extends Component {
 
   toggleExpanded = () => {
     this.setState({ collapsed: !this.state.collapsed });
+  };
+
+  renderCollapsibleView = () => {
+    return (
+      <View style={{ justifyContent: "center", padding: 10 }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({ collapsed: true });
+          }}
+        >
+          <Image source={icons.cancel} style={styles.cancelIcon} />
+        </TouchableOpacity>
+        <View style={styles.collapsibleSearchBar}>
+          <SearchBar />
+        </View>
+        <ScrollView
+          contentContainerStyle={{
+            marginTop: 7,
+            padding: 20
+          }}
+        >
+          <View style={{ flex: 1 }}>
+            <Text style={styles.listTitleText}>Favorite places:</Text>
+            <FlatList
+              data={this.state.exampleFavoritePlacesData}
+              renderItem={({ item }) => (
+                <View style={styles.listsContainer}>
+                  <Image
+                    source={
+                      item.title === "Work" ? icons.file_icon : icons.home_icon
+                    }
+                    style={styles.fileHomeIcon}
+                  />
+                  <View>
+                    <Text style={styles.listItemTitle}>{item.title}</Text>
+                    <Text style={styles.lisItemDescription}>
+                      {item.description}
+                    </Text>
+                  </View>
+                  <Image source={icons.add_icon} style={styles.addIcon} />
+                </View>
+              )}
+            />
+            <View style={{}}>
+              <Text style={styles.listTitleText}>Recent places:</Text>
+              <FlatList
+                data={this.state.exampleRecentPlacesData}
+                renderItem={({ item }) => (
+                  <View style={styles.eachListContainer}>
+                    <Image
+                      source={icons.recent_icon}
+                      style={{ width: 17.2, height: 16, marginRight: 10 }}
+                    />
+                    <View>
+                      <Text style={styles.listTitleText}>{item.title}</Text>
+                      <Text style={styles.lisItemDescription}>
+                        {item.description}
+                      </Text>
+                    </View>
+                  </View>
+                )}
+              />
+              <Text style={styles.showMoreText}>Show more</Text>
+            </View>
+            <View style={{ marginTop: 5 }}>
+              <Text style={styles.listTitleText}>Close places:</Text>
+              <FlatList
+                data={this.state.exampleRecentPlacesData}
+                renderItem={({ item }) => (
+                  <View style={styles.eachListContainer}>
+                    <Image
+                      source={icons.location_icon}
+                      style={styles.locationIcon}
+                    />
+                    <View>
+                      <Text style={styles.listItemTitle}>{item.title}</Text>
+                      <Text style={styles.lisItemDescription}>
+                        {item.description}
+                      </Text>
+                    </View>
+                  </View>
+                )}
+              />
+              <Text style={styles.showMoreText}>Show more</Text>
+            </View>
+          </View>
+        </ScrollView>
+      </View>
+    );
   };
 
   render() {
@@ -165,16 +291,7 @@ export class index extends Component {
             align="bottom"
             style={styles.collapsible}
           >
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({ collapsed: true });
-              }}
-            >
-              <Image source={icons.cancel} style={styles.cancelIcon} />
-            </TouchableOpacity>
-            <View style={styles.collapsibleSearchBar}>
-              <SearchBar />
-            </View>
+            {this.renderCollapsibleView()}
           </Collapsible>
         </View>
       </View>
