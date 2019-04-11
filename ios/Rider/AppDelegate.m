@@ -13,8 +13,7 @@
 
 #import <Firebase.h>
 
-@import GooglePlaces; 
-
+@import GooglePlaces;
 
 @implementation AppDelegate
 
