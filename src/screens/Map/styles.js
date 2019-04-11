@@ -12,5 +12,11 @@ export default StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject
     // flex: 1
-  }
+  },
+  
+drawerMenuStyle: {
+    width: 30,
+    height: 30,
+    marginLeft: 10
+}
 });

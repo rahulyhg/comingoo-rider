@@ -3,6 +3,8 @@ package com.comingoo.rider;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.cmcewen.blurview.BlurViewPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
 
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
@@ -42,6 +44,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new BlurViewPackage(),
+            new LinearGradientPackage(),
             new RNFirebasePackage(),
             new MapsPackage(),
             new RNI18nPackage(),
