@@ -46,7 +46,7 @@ export default class Drawer extends Component {
 
                                 </View>
 
-                                <View>
+                                <View style={styles.textViewContainer}>
                                     <Text style={styles.textContainer}>
                                         Comingoo
                                     </Text>

@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, Platform } from "react-native";
 
 import { colors } from "../../constants/index";
 
@@ -8,20 +8,24 @@ export default StyleSheet.create({
 
     container: {
         flex: 1,
-        
+
     },
     backgroundDrawerImage: {
         flex: 1,
-        width:width/1.22
+        width: Platform.OS === "android" ? width / 1.21 : width / 1.34,
+        height: "100%"
     },
     innerContainer: {
         flex: 1
     },
     innerViewContainer: {
-        flex: 0.22, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: width * 0.08
+        flex: Platform.OS === "android" ? 0.25 : 0.3,
+        justifyContent: "center",
+        alignItems: "flex-start",
+        paddingHorizontal: Platform.OS === "android" ? 30: 10
     },
     innerThumbnailAndTextContainer: {
-        flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "65%"
+        flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "100%"
     },
     thumbnailContainer: {
         backgroundColor: "#fff",
@@ -31,6 +35,7 @@ export default StyleSheet.create({
         alignItems: "center",
         borderRadius: 1000,
     },
+    textViewContainer: { flex: 1, alignItems: "flex-start", paddingLeft: 20 },
     textContainer: { fontSize: 20, color: '#fff' },
     middleContainer: { flex: 0.7, justifyContent: "flex-start", alignItems: 'center', marginTop: 50 },
     mainContainer: { flex: 1, width: "65%" },
