@@ -1,26 +1,28 @@
-
-import React from 'react';
-import { createAppContainer, createStackNavigator, createDrawerNavigator, createSwitchNavigator } from 'react-navigation';
-import { Dimensions, Image } from 'react-native';
+import React from "react";
+import {
+  createAppContainer,
+  createStackNavigator,
+  createDrawerNavigator,
+  createSwitchNavigator
+} from "react-navigation";
+import { Dimensions, Image } from "react-native";
 import MapScreen from "../screens/Map";
-import login from '../screens/Login';
-import signUp from '../screens/Signup';
-import HomeScreen from '../screens/Home';
-import loginPhoneNumber from '../screens/Login/PhoneNumber'
-import loginOtp from '../screens/Login/OtpVerification'
-import Drawer from './Drawer';
-import Main from '../components/Main';
-import DrawerHome from '../screens/DrawerScreens/Home';
-import DrawerHistory from '../screens/DrawerScreens/History'
-import DrawerNotifications from '../screens/DrawerScreens/Notifications'
-import DrawerReferAFriend from '../screens/DrawerScreens/ReferAFriend'
-import DrawerComingooAndYou from '../screens/DrawerScreens/ComingooAndYou'
-import DrawerHelp from '../screens/DrawerScreens/Help'
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { icons } from '../utils';
-import styles from '../components/Main/styles';
-
-
+import login from "../screens/Login";
+import signUp from "../screens/Signup";
+import HomeScreen from "../screens/Home";
+import loginPhoneNumber from "../screens/Login/PhoneNumber";
+import loginOtp from "../screens/Login/OtpVerification";
+import Drawer from "./Drawer";
+import Main from "../components/Main";
+import DrawerHome from "../screens/DrawerScreens/Home";
+import DrawerHistory from "../screens/DrawerScreens/History";
+import DrawerNotifications from "../screens/DrawerScreens/Notifications";
+import DrawerReferAFriend from "../screens/DrawerScreens/ReferAFriend";
+import DrawerComingooAndYou from "../screens/DrawerScreens/ComingooAndYou";
+import DrawerHelp from "../screens/DrawerScreens/Help";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { icons } from "../utils";
+import styles from "../components/Main/styles";
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -53,33 +55,36 @@ const DrawerHelpStack = createStackNavigator({
   DrawerHelp: { screen: DrawerHelp }
 });
 
-const Drawerscreens = createDrawerNavigator({
-  MainPage: {
-    screen: MainPageStack
+const Drawerscreens = createDrawerNavigator(
+  {
+    MainPage: {
+      screen: MainPageStack
+    },
+    DrawerHome: {
+      screen: DrawerHomeStack
+    },
+    DrawerHistory: {
+      screen: DrawerHistoryStack
+    },
+    DrawerNotifications: {
+      screen: DrawerNotificationsStack
+    },
+    DrawerReferAFriend: {
+      screen: DrawerReferAFriendStack
+    },
+    DrawerComingooAndYou: {
+      screen: DrawerComingooAndYouStack
+    },
+    DrawerHelp: {
+      screen: DrawerHelpStack
+    }
   },
-  DrawerHome: {
-    screen: DrawerHomeStack
-  },
-  DrawerHistory: {
-    screen: DrawerHistoryStack
-  },
-  DrawerNotifications: {
-    screen: DrawerNotificationsStack
-  },
-  DrawerReferAFriend: {
-    screen: DrawerReferAFriendStack
-  },
-  DrawerComingooAndYou: {
-    screen: DrawerComingooAndYouStack
-  },
-  DrawerHelp: {
-    screen: DrawerHelpStack
+  {
+    drawerWidth: deviceWidth / 1.47,
+    initialRouteName: "MainPage",
+    contentComponent: props => <Drawer {...props} />
   }
-}, {
-    drawerWidth: deviceWidth / 1.4,
-    initialRouteName: 'MainPage',
-    contentComponent: props => <Drawer {...props} />,
-  });
+);
 
 const Loginscreen = createStackNavigator({
   Home: {
@@ -100,14 +105,17 @@ const Loginscreen = createStackNavigator({
   },
   Signup: {
     screen: signUp
-  },
+  }
 });
 
-export default createAppContainer(createSwitchNavigator({
-  LoginScreen: { screen: Loginscreen },
-  DrawerScreen: { screen: Drawerscreens }
-},
-  {
-    initialRouteName: 'LoginScreen'
-  }
-));
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      LoginScreen: { screen: Loginscreen },
+      DrawerScreen: { screen: Drawerscreens }
+    },
+    {
+      initialRouteName: "DrawerScreen"
+    }
+  )
+);
