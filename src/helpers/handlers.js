@@ -8,7 +8,7 @@ import { strings } from "../../locale/i18n";
 const showToast = (message = "", type = "success", duration = 3000) => {
   return Toast.show({
     text: message,
-    buttonText: strings('handlers.okay'),
+    buttonText: strings("handlers.okay"),
     type,
     duration
   });

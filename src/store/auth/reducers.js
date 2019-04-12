@@ -1,5 +1,11 @@
-import { LOGIN, LOGOUT, REQUEST_FACEBOOK_LOGIN_FAILURE, REQUEST_FACEBOOK_LOGIN, REQUEST_PHONE_NUMBER_LOGIN,REQUEST_PHONE_NUMBER_LOGIN_FAILURE } from "./types";
-
+import {
+  LOGIN,
+  LOGOUT,
+  REQUEST_FACEBOOK_LOGIN_FAILURE,
+  REQUEST_FACEBOOK_LOGIN,
+  REQUEST_PHONE_NUMBER_LOGIN,
+  REQUEST_PHONE_NUMBER_LOGIN_FAILURE
+} from "./types";
 
 const initialState = {
   user: {
@@ -58,5 +64,3 @@ const reducer = (state = initialState, action) => {
 export const getUser = state => state.authReducer.user;
 
 export default reducer;
-
-
