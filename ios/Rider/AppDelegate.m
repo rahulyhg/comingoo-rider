@@ -21,8 +21,8 @@
 {
   [FIRApp configure];
 
-  [GMSPlacesClient provideAPIKey:@"AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0"];
-  [GMSServices provideAPIKey:@"AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0"];
+  [GMSPlacesClient provideAPIKey:@"AIzaSyCmhvUHtd7pf30mTyHMAJgAWLDXQhmTnTg"];
+  [GMSServices provideAPIKey:@"AIzaSyCmhvUHtd7pf30mTyHMAJgAWLDXQhmTnTg"];
   
   NSURL *jsCodeLocation;
   

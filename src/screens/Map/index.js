@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
-  ScrollView
+  ScrollView,
+  Platform
 } from "react-native";
 import { connect } from "react-redux";
 
@@ -28,7 +29,10 @@ const LATITUDE = 37.771707;
 const LONGITUDE = -122.4053769;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const GOOGLE_MAPS_APIKEY = "AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0";
+const GOOGLE_MAPS_APIKEY =
+  Platform.OS === "ios"
+    ? "AIzaSyCmhvUHtd7pf30mTyHMAJgAWLDXQhmTnTg"
+    : "AIzaSyDSZNJheGqTEQg_FjK2bPO2l6Ud3d8N1OQ";
 export class index extends Component {
   constructor(props) {
     super(props);
