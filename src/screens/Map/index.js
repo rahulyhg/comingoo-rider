@@ -7,7 +7,8 @@ import {
   Text,
   FlatList,
   ScrollView,
-  Platform
+  Platform,
+  ActivityIndicator
 } from "react-native";
 import { connect } from "react-redux";
 
@@ -15,7 +16,7 @@ import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import Collapsible from "react-native-collapsible";
 
-import { SearchBar, Button } from "../../components/";
+import { SearchBar, Button, PickupPin } from "../../components/";
 
 import { handlers } from "../../helpers";
 import mapStyle from "./mapStyle.json";
@@ -29,55 +30,57 @@ const LATITUDE = 37.771707;
 const LONGITUDE = -122.4053769;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const GOOGLE_MAPS_APIKEY =
-  Platform.OS === "ios"
-    ? "AIzaSyCmhvUHtd7pf30mTyHMAJgAWLDXQhmTnTg"
-    : "AIzaSyDSZNJheGqTEQg_FjK2bPO2l6Ud3d8N1OQ";
+const GOOGLE_MAPS_APIKEY = "AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0";
 export class index extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      coordinates: [
-        {
-          latitude: 37.3317876,
-          longitude: -122.0054812
-        },
-        {
-          latitude: 37.771707,
-          longitude: -122.4053769
-        }
-      ],
+      coordinates: [],
       inputCoordinate: null,
       userCoordinate: null,
       watchId: "",
       collapsed: true,
+      draggable: true,
+      region: null,
+      showsUserLocation: true,
+      followsUserLocation: true,
+      closestDriveLocation: null,
+      estimatedArrivalOfClosestDriver: null,
+      addLocationMarker: false,
+      loading: true,
       exampleFavoritePlacesData: [
         {
           title: "Work",
-          description: "Cafe le visar"
+          description: "Cafe le visar",
+          id: "asdasd"
         },
         {
           title: "Home",
-          description: "Residence andalusia"
+          description: "Residence andalusia",
+          id: "asdas1231d"
         }
       ],
       exampleRecentPlacesData: [
         {
           title: "Boulevard de l'Atlantide",
-          description: "Casablanca"
+          description: "Casablanca",
+          id: "123123lasldöösald"
         },
         {
           title: "Mc Donald's",
-          description: "Mc Donald's - - Casablanca"
+          description: "Mc Donald's - - Casablanca",
+          id: "lödlaödlaösdlöawdl13123"
         },
         {
           title: "Boulevard de l'Atlantide",
-          description: "Casablanca"
+          description: "Casablanca",
+          id: "kasmdkasmdkmaskdmlaö"
         },
         {
           title: "Mc Donald's",
-          description: "Mc Donald's - - Casablanca"
+          description: "Mc Donald's - - Casablanca",
+          id: "alsmdlakqnwrkqwrkmn"
         }
       ]
     };
@@ -85,25 +88,76 @@ export class index extends Component {
   }
 
   componentDidMount = async () => {
-    const geo = navigator.geolocation;
-    await geo.watchPosition(location => {
+    const { geolocation } = navigator;
+    await geolocation.watchPosition(location => {
       this.setState({
-        coords: location.coords
+        userCoordinate: location.coords
+      });
+    });
+
+    //check closest driver location and add coordinates
+
+    const { coordinates } = this.state;
+
+    const closestDriveLocation = {
+      latitude: 37.78543515272996,
+      longitude: -122.40533988922834
+    };
+
+    await geolocation.getCurrentPosition(position => {
+      coordinates.push(closestDriveLocation);
+      coordinates.push(position.coords);
+
+      console.warn(position);
+
+      this.setState({
+        userCoordinate: position.coords,
+        coordinates,
+        loading: false
       });
     });
   };
 
   onMapPress = e => {
-    this.setState({
+    /*  this.setState({
       coordinates: [...this.state.coordinates, e.nativeEvent.coordinate]
-    });
+    }); */
+
+    console.log(e.nativeEvent.coordinate);
   };
 
   getCurrentLocationOfRider = async () => {
     await navigator.geolocation.getCurrentPosition(position => {
       this.setState({ userCoordinate: position.coords });
+      const oldCoordinatesList = this.state.coordinates;
+      oldCoordinatesList.push(position.coords);
+      this.setState({ coordinates: oldCoordinatesList });
+
+      this.goToCurrentLocation();
     });
   };
+
+  goToCurrentLocation = () => {
+    const { userCoordinate, region } = this.state;
+    this.mapView.animateToRegion({
+      latitude: userCoordinate.latitude,
+      longitude: userCoordinate.longitude,
+      latitudeDelta: region.latitudeDelta,
+      longitudeDelta: region.longitudeDelta
+    });
+  };
+
+  /* setUserLocation = event => {
+    const userCoordinate = event.nativeEvent.coordinate;
+    this.setState({ userCoordinate });
+    if (
+      this.state.followsUserLocation &&
+      this.state.userCoordinate.latitude &&
+      this.state.userCoordinate.longitude
+    ) {
+      this.goToCurrentLocation();
+    }
+  }; */
 
   toggleExpanded = () => {
     this.setState({ collapsed: !this.state.collapsed });
@@ -148,7 +202,12 @@ export class index extends Component {
                     </Text>
                   </View>
                   <TouchableOpacity
-                    onPress={() => console.warn("clicked add icon")}
+                    onPress={() => {
+                      this.setState({
+                        collapsed: true,
+                        addLocationMarker: true
+                      });
+                    }}
                     style={styles.addIconContainer}
                   >
                     <Image source={icons.add_icon} style={styles.addIcon} />
@@ -164,7 +223,7 @@ export class index extends Component {
                   <View style={styles.eachListContainer}>
                     <Image
                       source={icons.recent_icon}
-                      style={{ width: 17.2, height: 16, marginRight: 10 }}
+                      style={styles.recentIcon}
                     />
                     <View>
                       <Text style={styles.listTitleText}>{item.title}</Text>
@@ -205,20 +264,48 @@ export class index extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={{ flex: 1 }}>
+          <ActivityIndicator
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+            size="large"
+            color="#000"
+          />
+        </View>
+      );
+    }
     return (
       <View style={styles.mainContainer}>
         <MapView
           initialRegion={{
-            latitude: LATITUDE,
             longitude: LONGITUDE,
+            latitude: LATITUDE,
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA
           }}
+          // onUserLocationChange={this.setUserLocation}
+          onRegionChangeComplete={region => {
+            this.setState({ region });
+            // sthis.getCurrentLocationOfRider();
+          }}
+          ref={ref => (this.mapView = ref)}
+          showsUserLocation={this.state.showsUserLocation}
+          followsUserLocation={this.state.followsUserLocation}
           style={styles.map}
-          ref={c => (this.mapView = c)}
           onPress={this.onMapPress}
           provider={PROVIDER_GOOGLE}
           customMapStyle={mapStyle}
+          showsUserLocation
+          // onMapReady={() => this.getCurrentLocationOfRider()}
         >
           {/* this.state.coordinates.map((coordinate, index) => (
             <MapView.Marker
@@ -226,7 +313,7 @@ export class index extends Component {
               coordinate={coordinate}
             />
           )) */}
-          {this.state.coordinates.length >= 3 && (
+          {this.state.coordinates.length >= 2 && (
             <MapViewDirections
               origin={this.state.coordinates[0]}
               waypoints={
@@ -238,7 +325,7 @@ export class index extends Component {
                 this.state.coordinates[this.state.coordinates.length - 1]
               }
               apikey={GOOGLE_MAPS_APIKEY}
-              strokeWidth={3}
+              strokeWidth={0}
               strokeColor="black"
               optimizeWaypoints
               onStart={params => {
@@ -251,13 +338,16 @@ export class index extends Component {
               onReady={result => {
                 console.log("Distance: ${result.distance} km");
                 console.log("Duration: ${result.duration} min.");
-                this.mapView.fitToCoordinates(result.coordinates, {
+                /* this.mapView.fitToCoordinates(result.coordinates, {
                   edgePadding: {
                     right: width / 20,
                     bottom: height / 20,
                     left: width / 20,
                     top: height / 20
                   }
+                }); */
+                this.setState({
+                  estimatedArrivalOfClosestDriver: result.duration
                 });
               }}
               onError={errorMessage => {
@@ -265,26 +355,29 @@ export class index extends Component {
               }}
             />
           )}
-          <MapView.Marker
-            coordinate={this.state.coordinates[1]}
-            draggable
-            onDragEnd={e =>
-              this.setState({ inputCoordinate: e.nativeEvent.coordinate })
-            }
-          >
-            <View hitSlop={{ left: -10, right: -10, top: -10, bottom: 10 }}>
-              <Image
-                source={require("../../assets/icons/pickup_pin.png")}
-                style={{ width: 30, height: 50 }}
-              />
-            </View>
+          <MapView.Marker coordinate={this.state.coordinates[0]}>
+            <PickupPin
+              estimatedArrivalOfClosestDriver={
+                this.state.estimatedArrivalOfClosestDriver
+              }
+            />
           </MapView.Marker>
+          {this.state.addLocationMarker && (
+            <MapView.Marker
+              coordinate={this.state.userCoordinate}
+              draggable
+              onDragEnd={e => console.warn(e.nativeEvent.coordinate)}
+            />
+          )}
         </MapView>
         <View style={styles.actionsView}>
-          <TouchableOpacity onPress={this.getCurrentLocationOfRider}>
+          <TouchableOpacity
+            onPress={this.getCurrentLocationOfRider}
+            style={styles.currentLocationIconContainer}
+          >
             <Image
               source={icons.current_location}
-              style={styles.currentLocation}
+              style={styles.currentLocationIcon}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -308,7 +401,7 @@ export class index extends Component {
               console.warn("clicked wheel");
             }}
           >
-            <Image source={images.wheel} style={styles.wheel} />
+            <Image source={images.wheel} style={styles.wheelIcon} />
           </TouchableOpacity>
         </View>
         <View style={styles.collabsibleAncestorContainer}>

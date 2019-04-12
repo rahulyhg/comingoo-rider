@@ -145,7 +145,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-google-places')
     implementation project(':react-native-firebase')
     implementation(project(':react-native-maps')){
        exclude group: 'com.google.android.gms', module: 'play-services-base'
@@ -158,8 +157,8 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation 'com.facebook.android:facebook-android-sdk:4.34.0'
     implementation project(':react-native-fbsdk')
-    implementation "com.google.firebase:firebase-core:16.0.6"
-    implementation "com.google.firebase:firebase-auth:16.1.0"
+    implementation "com.google.firebase:firebase-core:16.0.8"
+    implementation "com.google.firebase:firebase-auth:16.2.1"
     implementation 'com.google.android.gms:play-services-base:16.1.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
 }

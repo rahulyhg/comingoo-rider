@@ -13,7 +13,7 @@ export default StyleSheet.create({
   actionsView: {
     position: "absolute",
     bottom: 60,
-    alignItems: "flex-end"
+    zIndex: 1
   },
   searchBarContainer: {
     width: width,
@@ -22,7 +22,16 @@ export default StyleSheet.create({
     paddingRight: width / 22.33,
     paddingLeft: width / 22.33
   },
-  currentLocation: { width: 40, height: 40, marginRight: width / 22.33 },
+  currentLocationIcon: {
+    width: 40,
+    height: 40
+  },
+  currentLocationIconContainer: {
+    width: 40,
+    height: 40,
+    marginRight: width / 22.33,
+    alignSelf: "flex-end"
+  },
   setPickupContainer: {
     width: width,
     height: height / 13.34,
@@ -30,20 +39,21 @@ export default StyleSheet.create({
     paddingRight: width / 22.33,
     paddingLeft: width / 22.33
   },
+
   wheelContainer: {
-    width: width,
-    height: height / 13.34,
+    width: 80,
+    height: 80,
     marginTop: 14,
-    paddingRight: width / 22.33,
-    paddingLeft: width / 22.33,
-    alignItems: "center"
+    alignSelf: "center"
   },
-  wheel: { width: 80, height: 80 },
+  wheelIcon: { width: 80, height: 80 },
+
   collabsibleAncestorContainer: {
     position: "absolute",
     bottom: 0,
     left: 10,
-    right: 10
+    right: 10,
+    zIndex: 2
   },
   collapsible: {
     backgroundColor: "#F2F2F2",
@@ -109,5 +119,6 @@ export default StyleSheet.create({
     paddingBottom: 10,
     marginBottom: 10
   },
-  locationIcon: { width: 13, height: 18, marginRight: 10 }
+  locationIcon: { width: 13, height: 18, marginRight: 10 },
+  recentIcon: { width: 17.2, height: 16, marginRight: 10 }
 });

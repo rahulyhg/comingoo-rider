@@ -13,7 +13,7 @@
 
 #import <Firebase.h>
 
-@import GooglePlaces;
+// @import GooglePlaces;
 
 @implementation AppDelegate
 
@@ -21,8 +21,8 @@
 {
   [FIRApp configure];
 
-  [GMSPlacesClient provideAPIKey:@"AIzaSyCmhvUHtd7pf30mTyHMAJgAWLDXQhmTnTg"];
-  [GMSServices provideAPIKey:@"AIzaSyCmhvUHtd7pf30mTyHMAJgAWLDXQhmTnTg"];
+  // [GMSPlacesClient provideAPIKey:@"AIzaSyCmhvUHtd7pf30mTyHMAJgAWLDXQhmTnTg"];
+  [GMSServices provideAPIKey:@"AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0"];
   
   NSURL *jsCodeLocation;
   
