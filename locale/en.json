@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 {
   "home": {
     "no_account": "Don't have an account?",
@@ -17,11 +9,11 @@
     "login_heading": "Login Screen",
     "login_button": "Login",
     "sign_up": "Sign up",
-    "login_with_facebook" : "Login with facebook",
-    "sign_in_with_facebook_or_phone_number":"Sign in with facebook button or phone number",
-    "login_with_phone_number":"Login with Phone Number",
-    "logged_in_succesfully":"Logged In Succesfully",
-    "error_retry_login":"Error Retry Login"
+    "login_with_facebook": "Login with facebook",
+    "sign_in_with_facebook_or_phone_number": "Sign in with facebook button or phone number",
+    "login_with_phone_number": "Login with Phone Number",
+    "logged_in_succesfully": "Logged In Succesfully",
+    "error_retry_login": "Error Retry Login"
   },
   "signup": {
     "enter_phone_toast": "Please, enter your phone number!",
@@ -35,9 +27,9 @@
     "phone_number_language": "eng",
     "code_sent_your_phone": "Code sent to your phone.",
     "code_confirmed": "Code confirmed",
-    "wrong_otp_toast":"Incorrect Password",
+    "wrong_otp_toast": "Wrong OTP",
     "code_incorrect": "Wrong code"
-    },
+  },
   "handlers": {
     "okay": "Okay"
   }
