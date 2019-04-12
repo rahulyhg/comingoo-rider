@@ -8,19 +8,19 @@ import {
   TouchableWithoutFeedback,
   Keyboard
 } from "react-native";
-
+import { connect } from "react-redux";
 import { Item, Label, Input } from "native-base";
 import { icons } from "../../../utils";
 import styles from "./styles";
 import { handlers } from "../../../helpers";
-import { connect } from "react-redux";
 import firebase from "react-native-firebase";
 
 import { strings } from "../../../../locale/i18n";
+import { requestPhoneNumberlogin } from "../../../store/auth/actions";
 
 const { width, height } = Dimensions.get("window");
 
-export default class OtpVerification extends React.Component {
+class OtpVerification extends React.Component {
   static navigationOptions = {
     headerTintColor: "#fff",
     headerStyle: {
@@ -40,6 +40,7 @@ export default class OtpVerification extends React.Component {
   verifyOtp = () => {
     const { otp } = this.state;
     const confirmResult = this.props.navigation.getParam("confirmResult");
+    const number = this.props.navigation.getParam("number");
     if (!otp) {
       this.setState({
         numberError: !otp
@@ -51,7 +52,9 @@ export default class OtpVerification extends React.Component {
       .confirm(otp)
       .then(user => {
         console.log(user);
+        this.props.dispatch(requestPhoneNumberlogin(number));
         this.props.navigation.navigate("Map");
+
         return handlers.showToast(strings("signup.code_confirmed"));
       })
       .catch(error => {
@@ -99,3 +102,6 @@ export default class OtpVerification extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({});
+export default connect(mapStateToProps)(OtpVerification)

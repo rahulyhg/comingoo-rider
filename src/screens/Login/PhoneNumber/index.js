@@ -57,7 +57,8 @@ export default class PhoneNumber extends React.Component {
       .then(confirmResult => {
         this.setState({ confirmResult: confirmResult });
         this.props.navigation.navigate("LoginOtp", {
-          confirmResult: this.state.confirmResult
+          confirmResult: this.state.confirmResult,
+          number:this.state.number
         });
         return handlers.showToast(strings("signup.code_sent_your_phone"));
       })
