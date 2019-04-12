@@ -8,7 +8,9 @@
   "login": {
     "login_heading": "Écran de connexion",
     "login_button": "S'identifier",
-    "sign_up": "S'inscrire"
+    "sign_up": "S'inscrire",
+    "logged_in_succesfully":"Connecté avec succès",
+    "error_retry_login":"Erreur Réessayer Connexion"
   },
   "signup": {
     "enter_phone_toast": "S'il vous plait, entrez votre numéro de téléphone!",
@@ -22,6 +24,7 @@
     "phone_number_language": "fra",
     "code_sent_your_phone": "Code envoyé à votre téléphone.",
     "code_confirmed": "Code confirmé.",
+    "wrong_otp_toast":"Mot de passe incorrect",
     "code_incorrect": "Mauvais code"
   },
   "handlers": {

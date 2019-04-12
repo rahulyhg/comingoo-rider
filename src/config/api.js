@@ -30,3 +30,14 @@ export const signupRequest = async(userData = {}) => fetch("https://comingoo-api
     }
     return true;
 }).catch(error => console.log("ERROR FROM API", error));
+export const signinRequest = (endpoint, method = "get", body) => fetch(endpoint, {
+        method: method,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    }).then(response => {
+        return response.json();
+    }).catch(error => {
+        return error;
+    });

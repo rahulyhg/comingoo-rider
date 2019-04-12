@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, TouchableOpacity, Image } from "react-native";
 import { connect } from "react-redux";
 
 import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-
+import { icons } from '../../utils';
 import styles from "./styles";
 import { handlers } from "../../helpers";
 import mapStyle from "./mapStyle.json";
+import { DrawerActions } from "react-navigation"
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -17,6 +18,18 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const GOOGLE_MAPS_APIKEY = "AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0";
 export class index extends Component {
+
+
+  static navigationOptions = ({ ...props }) => {
+    return {
+      headerLeft: <TouchableOpacity onPress={() => props.navigation.toggleDrawer()} >
+        <Image style={styles.drawerMenuStyle} source={icons.drawer_menu} />
+      </TouchableOpacity>
+
+    }
+  }
+
+
   constructor(props) {
     super(props);
 
