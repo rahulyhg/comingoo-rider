@@ -28,7 +28,7 @@ class Main extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  onLogin: () => dispatch(onLogin())
+    onLogin: () => dispatch(onLogin())
 });
 
 export default connect(

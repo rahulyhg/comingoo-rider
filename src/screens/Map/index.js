@@ -20,6 +20,7 @@ import { SearchBar, Button, PickupPin } from "../../components/";
 
 import { handlers } from "../../helpers";
 import mapStyle from "./mapStyle.json";
+import { DrawerActions } from "react-navigation"
 
 import styles from "./styles";
 import { icons, images } from "../../utils";
@@ -32,6 +33,18 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const GOOGLE_MAPS_APIKEY = "AIzaSyB-LQQuqki_hvDEDCiVFkRCLwloNOanGi0";
 export class index extends Component {
+
+
+  static navigationOptions = ({ ...props }) => {
+    return {
+      headerLeft: <TouchableOpacity onPress={() => props.navigation.toggleDrawer()} >
+        <Image style={styles.drawerMenuStyle} source={icons.drawer_menu} />
+      </TouchableOpacity>
+
+    }
+  }
+
+
   constructor(props) {
     super(props);
 

@@ -9,5 +9,13 @@ export default {
   recent_icon: require("../assets/icons/recent_icon.png"),
   location_icon: require("../assets/icons/location_icon.png"),
   home_icon: require("../assets/icons/home_icon.png"),
-  add_icon: require("../assets/icons/add_icon.png")
+  add_icon: require("../assets/icons/add_icon.png"),
+  drawer_menu: require("../assets/icons/drawer_menu.png"),
+  help: require("../assets/icons/help.png"),
+  heart: require("../assets/icons/heart.png"),
+  history: require("../assets/icons/history.png"),
+  Home: require("../assets/icons/Home.png"),
+  notification: require("../assets/icons/notification.png"),
+  logout: require("../assets/icons/logout.png"),
+  refer: require("../assets/icons/refer.png")
 };

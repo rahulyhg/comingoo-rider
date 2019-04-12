@@ -22,6 +22,7 @@
     "phone_number_language": "fra",
     "code_sent_your_phone": "Code envoyé à votre téléphone.",
     "code_confirmed": "Code confirmé.",
+    "wrong_otp_toast":"Mot de passe incorrect",
     "code_incorrect": "Mauvais code"
   },
   "handlers": {

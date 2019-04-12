@@ -120,5 +120,11 @@ export default StyleSheet.create({
     marginBottom: 10
   },
   locationIcon: { width: 13, height: 18, marginRight: 10 },
-  recentIcon: { width: 17.2, height: 16, marginRight: 10 }
+  recentIcon: { width: 17.2, height: 16, marginRight: 10 },
+
+  drawerMenuStyle: {
+    width: 30,
+    height: 30,
+    marginLeft: 10
+  }
 });
