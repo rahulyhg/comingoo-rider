@@ -8,7 +8,9 @@
   "login": {
     "login_heading": "Écran de connexion",
     "login_button": "S'identifier",
-    "sign_up": "S'inscrire"
+    "sign_up": "S'inscrire",
+    "logged_in_succesfully":"Connecté avec succès",
+    "error_retry_login":"Erreur Réessayer Connexion"
   },
   "signup": {
     "enter_phone_toast": "S'il vous plait, entrez votre numéro de téléphone!",

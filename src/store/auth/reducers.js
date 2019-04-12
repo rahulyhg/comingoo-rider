@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, ERROR, REQUEST_FACEBOOK_LOGIN } from "./types";
+import { LOGIN, LOGOUT, REQUEST_FACEBOOK_LOGIN_FAILURE, REQUEST_FACEBOOK_LOGIN, REQUEST_PHONE_NUMBER_LOGIN,REQUEST_PHONE_NUMBER_LOGIN_FAILURE } from "./types";
 
 
 const initialState = {
@@ -6,7 +6,7 @@ const initialState = {
     auth_token: "",
     created_at: "",
     email: "",
-    full_name: "",
+    full_name: "Comingoo",
     gender: "",
     id: "",
     last_login_at: "",
@@ -33,11 +33,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: { ...action.payload }
       };
-    case ERROR:
+    case REQUEST_FACEBOOK_LOGIN_FAILURE:
       return {
         ...state,
-        error: action.payload
+        error: action.message
       };
+
+    case REQUEST_PHONE_NUMBER_LOGIN:
+      return {
+        ...state,
+        user: { ...action.payload }
+      };
+    case REQUEST_PHONE_NUMBER_LOGIN_FAILURE:
+      return {
+        ...state,
+        error: action.message
+      };
+
     default:
       return state;
   }

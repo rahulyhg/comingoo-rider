@@ -19,7 +19,9 @@
     "sign_up": "Sign up",
     "login_with_facebook" : "Login with facebook",
     "sign_in_with_facebook_or_phone_number":"Sign in with facebook button or phone number",
-    "login_with_phone_number":"Login with Phone Number"
+    "login_with_phone_number":"Login with Phone Number",
+    "logged_in_succesfully":"Logged In Succesfully",
+    "error_retry_login":"Error Retry Login"
   },
   "signup": {
     "enter_phone_toast": "Please, enter your phone number!",
