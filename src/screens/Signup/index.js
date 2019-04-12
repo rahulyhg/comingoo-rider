@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   Image,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  AsyncStorage
 } from "react-native";
 import { connect } from "react-redux";
 import { Item, Label, Input } from "native-base";
@@ -110,6 +111,7 @@ class Signup extends React.Component {
           .props
           .navigation
           .navigate("Map");
+        AsyncStorage.setItem("COMINGOO_TOKEN", userData.access_token);
 
         // user successfully signup, will navigate to extpage...
         return handlers.showToast(strings("signup.code_confirmed"));
