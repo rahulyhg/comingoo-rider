@@ -93,7 +93,6 @@ class Signup extends React.Component {
     const userData = {
       ...this.state.userInfo,
       phone_number: this.state.number
-
     };
     const result = await signupRequest(userData);
 
@@ -145,7 +144,9 @@ class Signup extends React.Component {
     return (
       <View style={styles.numberContainer}>
         <Item stackedLabel style={styles.inputs} error={numberError}>
-          <Label style={styles.labelStyle}>{strings("signup.phone_number")}</Label>
+          <Label style={styles.labelStyle}>
+            {strings("signup.phone_number")}
+          </Label>
           <PhoneInput
             ref={ref => {
             this.phone = ref;
@@ -204,17 +205,17 @@ class Signup extends React.Component {
           <View style={styles.topContainer}>
             <Text style={styles.mediumTxt}>{strings("signup.sign_up")}</Text>
             <Text style={styles.smallTxt}>
-              {step == 1
+              {step === 1
                 ? strings("signup.step_1")
-                : step == 2
+                : step === 2
                   ? strings("signup.step_2")
                   : strings("signup.step_3")}
             </Text>
           </View>
           <View style={styles.middleContainer}>
-            {step == 1
+            {step === 1
               ? this.facebootBtn()
-              : step == 2
+              : step === 2
                 ? this.numberInput()
                 : this.otpInput()}
           </View>
