@@ -74,7 +74,6 @@ class Signup extends React.Component {
       .auth()
       .signInWithPhoneNumber(number)
       .then(confirmResult => {
-        console.log("CONFIRM RESULT", confirmResult);
         this.setState({ confirmResult });
         this.next();
         return handlers.showToast(strings("signup.code_sent_your_phone"));
@@ -100,17 +99,18 @@ class Signup extends React.Component {
     confirmResult
       .confirm(otp)
       .then(user => {
-        if (!result) {
+        if (!result.success) {
           this
             .props
             .navigation
             .navigate("Home");
-        } else {
-          this
-            .props
-            .navigation
-            .navigate("Map");
+          return handlers.showToast(result.message, "danger");
         }
+        this
+          .props
+          .navigation
+          .navigate("Map");
+
         // user successfully signup, will navigate to extpage...
         return handlers.showToast(strings("signup.code_confirmed"));
       })
