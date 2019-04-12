@@ -25,7 +25,10 @@ import { strings } from "../../../locale/i18n";
 import { signupRequest } from "../../config/api";
 
 class Signup extends React.Component {
-  static navigationOptions = () => ({ headerTintColor: colors.light, headerStyle: styles.headerStyle });
+  static navigationOptions = () => ({
+    headerTintColor: colors.light,
+    headerStyle: styles.headerStyle
+  });
 
   constructor(props) {
     super(props);
@@ -48,7 +51,7 @@ class Signup extends React.Component {
     });
   };
 
-  login = async() => {
+  login = async () => {
     try {
       const user = await loginWithFacebook();
       if (user) {
@@ -82,7 +85,7 @@ class Signup extends React.Component {
       .catch(error => console.log(error));
   };
 
-  verifyOTP = async() => {
+  verifyOTP = async () => {
     const { otp, confirmResult } = this.state;
     if (!otp) {
       this.setState({
@@ -93,7 +96,6 @@ class Signup extends React.Component {
     const userData = {
       ...this.state.userInfo,
       phone_number: this.state.number
-
     };
     const result = await signupRequest(userData);
 
@@ -101,40 +103,36 @@ class Signup extends React.Component {
       .confirm(otp)
       .then(user => {
         if (!result) {
-          this
-            .props
-            .navigation
-            .navigate("Home");
+          this.props.navigation.navigate("Home");
         } else {
-          this
-            .props
-            .navigation
-            .navigate("Map");
+          this.props.navigation.navigate("Map");
         }
         // user successfully signup, will navigate to extpage...
         return handlers.showToast(strings("signup.code_confirmed"));
       })
-      .catch(error => handlers.showToast(strings("signup.code_incorrect"), "danger"));
+      .catch(error =>
+        handlers.showToast(strings("signup.code_incorrect"), "danger")
+      );
   };
 
   facebootBtn = () => (
     <TouchableOpacity style={styles.btn} onPress={this.login}>
-      <Image source={icons.fb_icon} style={styles.iconStyle} resizeMode="contain" />
+      <Image
+        source={icons.fb_icon}
+        style={styles.iconStyle}
+        resizeMode="contain"
+      />
       <View style={styles.seperator} />
       <Text style={styles.btnTxt}>{strings("signup.continue_with_fb")}</Text>
     </TouchableOpacity>
   );
 
   onPressFlag = () => {
-    this
-      .countryPicker
-      .openModal();
+    this.countryPicker.openModal();
   };
 
   selectCountry = country => {
-    this
-      .phone
-      .selectCountry(country.cca2.toLowerCase());
+    this.phone.selectCountry(country.cca2.toLowerCase());
     this.setState({ cca2: country.cca2 });
   };
 
@@ -143,21 +141,25 @@ class Signup extends React.Component {
     return (
       <View style={styles.numberContainer}>
         <Item stackedLabel style={styles.inputs} error={numberError}>
-          <Label style={styles.labelStyle}>{strings("signup.phone_number")}</Label>
+          <Label style={styles.labelStyle}>
+            {strings("signup.phone_number")}
+          </Label>
           <PhoneInput
             ref={ref => {
-            this.phone = ref;
-          }}
+              this.phone = ref;
+            }}
             onPressFlag={this.onPressFlag}
             style={styles.inputStyle}
             textStyle={styles.phoneNumberText}
-            onChangePhoneNumber={phoneNumberText => this.setState({ number: phoneNumberText })}
-            value={number} 
+            onChangePhoneNumber={phoneNumberText =>
+              this.setState({ number: phoneNumberText })
+            }
+            value={number}
           />
           <CountryPicker
             ref={ref => {
-            this.countryPicker = ref;
-          }}
+              this.countryPicker = ref;
+            }}
             onChange={value => this.selectCountry(value)}
             translation={strings("signup.phone_number_language")}
             cca2={this.state.cca2}
@@ -184,7 +186,7 @@ class Signup extends React.Component {
             value={otp}
             onChangeText={otpInput => this.setState({ otp: otpInput })}
             error
-            secureTextEntry 
+            secureTextEntry
           />
         </Item>
         <TouchableOpacity style={styles.nextBtn} onPress={this.verifyOTP}>
@@ -202,19 +204,19 @@ class Signup extends React.Component {
           <View style={styles.topContainer}>
             <Text style={styles.mediumTxt}>{strings("signup.sign_up")}</Text>
             <Text style={styles.smallTxt}>
-              {step == 1
+              {step === 1
                 ? strings("signup.step_1")
-                : step == 2
-                  ? strings("signup.step_2")
-                  : strings("signup.step_3")}
+                : step === 2
+                ? strings("signup.step_2")
+                : strings("signup.step_3")}
             </Text>
           </View>
           <View style={styles.middleContainer}>
-            {step == 1
+            {step === 1
               ? this.facebootBtn()
-              : step == 2
-                ? this.numberInput()
-                : this.otpInput()}
+              : step === 2
+              ? this.numberInput()
+              : this.otpInput()}
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -226,4 +228,7 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup);
