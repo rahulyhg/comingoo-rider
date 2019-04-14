@@ -80,7 +80,7 @@ const Drawerscreens = createDrawerNavigator(
     }
   },
   {
-    drawerWidth: Platform.OS === "ios" ? deviceWidth / 1.47 : deviceWidth / 1.4,
+    drawerWidth: Platform.OS === "ios" ? deviceWidth / 1.47 : deviceWidth / 1.53,
     initialRouteName: "MainPage",
     contentComponent: props => <Drawer {...props} />
   }

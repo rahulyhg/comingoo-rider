@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
   backgroundDrawerImage: {
     flex: 1,
-    width: Platform.OS === "android" ? width / 1.21 : width / 1.47,
+    width: Platform.OS === "android" ? width / 1.47 : width / 1.47,
     height: "100%"
   },
   innerContainer: {
@@ -54,7 +54,7 @@ export default StyleSheet.create({
   underline: {
     backgroundColor: "#fff",
     height: 2,
-    width: Platform.OS === "android" ? width / 1.4 : width / 1.47
+    width: Platform.OS === "android" ? width / 1.53 : width / 1.47
   },
   bottomContainer: {
     flex: 0.1,
